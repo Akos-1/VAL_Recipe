@@ -42,7 +42,7 @@ function App() {
             return;
         }
 
-        fetch('http://localhost:5001/recipes', {
+        fetch('http://localhost:5002/recipes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
