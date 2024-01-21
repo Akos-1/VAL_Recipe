@@ -39,12 +39,12 @@ header {
 .blue-banner {
     background: url('images/banner.jpg') center/cover; 
     color: #fff; /* Adjust the text color as needed */
-    padding: 80px 20px; /* Adjusted padding for the blue banner */
+    padding: 100px 20px; /* Adjusted padding for the blue banner */
     text-align: center;
 }
 
 
 h1 {
-    font-size: 36px; /* Adjust the font size as needed */
+    font-size: 46px; /* Adjust the font size as needed */
     margin-bottom: 20px; /* Optional: Add some space below the h1 */
 }
