@@ -14,7 +14,7 @@ header {
 }
 
 .logo img {
-    max-height: 50px; /* Adjust the max height of your logo */
+    max-height: 50px;
 }
 
 .top-right {
@@ -22,11 +22,39 @@ header {
     align-items: center;
 }
 
-.menu a {
-    margin-right: 15px;
-    color: #fff;
-    text-decoration: none;
+.menu {
+    position: relative;
 }
+
+.recipes-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.recipes-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9; /* Adjust the background color as needed */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add a shadow for a dropdown effect */
+    z-index: 1;
+}
+
+.recipes-menu li {
+    padding: 8px;
+    text-align: left;
+}
+
+.recipes-menu li a {
+    text-decoration: none;
+    color: #333; /* Adjust the text color as needed */
+    display: block;
+}
+
+/* Show the dropdown menu on hover */
+.recipes-dropdown:hover .recipes-menu {
+    display: block;
+}
+
 
 .search {
     margin-right: 15px;
