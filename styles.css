@@ -57,19 +57,16 @@ h1 {
 
 .food-images {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
 }
 
 .food-item {
+    flex: 1;
+    margin: 0 10px; /* Adjust margin as needed */
     text-align: center;
 }
 
 .food-item img {
-    max-width: 100%; /* Ensure the image does not exceed its container */
-}
-
-.food-item p {
-    margin-top: 10px;
+    max-width: 100%; /* Ensure images don't exceed their container width */
 }
