@@ -37,8 +37,8 @@ header {
 }
 
 .blue-banner {
-    background-color: #3498db; /* Adjust the color as needed */
+    background: url('images/banner.jpg') center/cover; /* Replace 'images/banner.jpg' with the path to your banner image */
     color: #fff; /* Adjust the text color as needed */
-    padding: 80px; /* Adjusted padding for the blue banner */
+    padding: 80px 20px; /* Adjusted padding for the blue banner */
     text-align: center;
 }
