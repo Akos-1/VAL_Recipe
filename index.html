@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAL's Recipes</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <!-- Your logo goes here -->
+            <img src="path/to/your/logo.png" alt="Logo">
+        </div>
+        <div class="top-right">
+            <div class="menu">
+                <a href="#">Home</a>
+                <a href="#">Log In</a>
+                <a href="#">Country</a>
+            </div>
+            <div class="search">
+                <!-- Add your search form here -->
+                <form action="#" method="get">
+                    <input type="text" name="search" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
 
-<header>
-    <div>
-        <img id="logo" src="path/to/your/logo.png" alt="VAL's Recipes Logo">
+    <div class="blue-banner">
+        <h1>Welcome to VAL's Recipes</h1>
+        <p>Journey Through West Africa's Culinary Wonders</p>
     </div>
-    <div>
-        <input type="text" id="search" placeholder="Search...">
-        <a href="#">Home</a>
-        <a href="#">Log In</a>
-        <a href="#">Country</a>
-    </div>
-</header>
 
-<div id="banner">
-    <h1>Welcome to VAL's Recipes</h1>
-    <p>Journey Through West Africa's Culinary Wonders</p>
-</div>
+    <!-- Rest of your content goes here -->
 
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
