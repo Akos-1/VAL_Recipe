@@ -7,7 +7,7 @@ body {
 header {
     background-color: #333; /* Adjust the color as needed */
     color: #fff; /* Adjust the text color as needed */
-    padding: 10px;
+    padding: 20px; /* Adjusted padding for the header */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,6 +39,6 @@ header {
 .blue-banner {
     background-color: #3498db; /* Adjust the color as needed */
     color: #fff; /* Adjust the text color as needed */
-    padding: 20px;
+    padding: 80px; /* Adjusted padding for the blue banner */
     text-align: center;
 }
