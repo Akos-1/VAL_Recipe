@@ -54,3 +54,22 @@ h1 {
     font-size: 46px; /* Adjust the font size as needed */
     margin-bottom: 20px; /* Optional: Add some space below the h1 */
 }
+
+.food-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.food-item {
+    text-align: center;
+}
+
+.food-item img {
+    max-width: 100%; /* Ensure the image does not exceed its container */
+}
+
+.food-item p {
+    margin-top: 10px;
+}
