@@ -43,6 +43,12 @@ header {
     text-align: center;
 }
 
+.banner {
+    background-color: #3498db; /* Adjust the color as needed */
+    color: #fff; /* Adjust the text color as needed */
+    padding: 30px; /* Adjusted padding for the blue banner */
+    text-align: center;
+}
 
 h1 {
     font-size: 46px; /* Adjust the font size as needed */
