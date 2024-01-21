@@ -37,8 +37,14 @@ header {
 }
 
 .blue-banner {
-    background: url('images/banner.jpg') center/cover; /* Replace 'images/banner.jpg' with the path to your banner image */
+    background: url('images/banner.jpg') center/cover; 
     color: #fff; /* Adjust the text color as needed */
     padding: 80px 20px; /* Adjusted padding for the blue banner */
     text-align: center;
+}
+
+
+h1 {
+    font-size: 36px; /* Adjust the font size as needed */
+    margin-bottom: 20px; /* Optional: Add some space below the h1 */
 }
