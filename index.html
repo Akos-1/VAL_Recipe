@@ -3,28 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>VAL's Recipes</title>
+    <title>VALS's Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet" href="styles/styleres3.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        #logo {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #logo img {
+            width: 150px; /* Adjust the size as needed */
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Recipes</h1>
-    <ul id="recipe-list">
-        <!-- Recipe items will be dynamically added here -->
-    </ul>
-    <a href="{{ url_for('add_recipe') }}">Add New Recipe</a>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Login</a>
+        <a href="#">Country</a>
+    </nav>
+
+    <section id="logo">
+        <img src="path/to/your/logo.png" alt="Your Logo">
+    </section>
+
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to VAL's Recipes!</p>
+    </section>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form>
+            <!-- Your login form goes here -->
+        </form>
+    </section>
+
+    <section id="country">
+        <h2>Country</h2>
+        <ul>
+            <li>Choose a country:</li>
+            <li><a href="#">Country 1</a></li>
+            <li><a href="#">Country 2</a></li>
+            <li><a href="#">Country 3</a></li>
+        </ul>
+    </section>
 </body>
 </html>
