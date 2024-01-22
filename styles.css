@@ -85,18 +85,16 @@ header {
     text-align: center;
 }
 
-.banner {
+.banner,
+.closing-banner {
     background-color: #3498db;
     color: #fff;
-    padding: 10px;
+    padding: 10px; /* Adjusted padding for the banners */
     text-align: center;
 }
 
 .closing-banner {
-    background-color: #3498db;
-    color: #fff;
-    padding: 40px;
-    text-align: center;
+    padding: 40px; /* Adjusted padding for the closing banner */
 }
 
 h1 {
@@ -122,18 +120,17 @@ h1 {
 
 .popup {
     display: none;
-    position: center;
-    top: 0;
-    left: 0;
-    width: 40%;
-    height: 40%;
-    background: rgba(255, 165, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Adjusted width for the popup */
+    max-height: 80%; /* Adjusted max height for the popup */
+    background: rgba(255, 165, 0, 0.9);
+    z-index: 1000;
 }
 
 .popup-content {
-    background: #fff;
     padding: 20px;
     text-align: center;
 }
