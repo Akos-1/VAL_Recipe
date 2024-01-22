@@ -86,14 +86,14 @@ header {
 .banner {
     background-color: #3498db;
     color: #fff;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
 }
 
 .banner-space {
     background-color: #0000;
     color: #fff;
-    padding: 5px;
+    padding: 10px;
 }
 
 h1 {
