@@ -33,11 +33,11 @@ header {
 }
 
 .menu a:hover {
-    color: #ddd; /* Change the hover color as needed */
+    color: #ddd;
 }
 
 .recipes-dropdown {
-    position: absolute;
+    position: relative;
     display: inline-block;
 }
 
@@ -47,6 +47,7 @@ header {
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    top: 100%; /* Adjust the top value to move the dropdown below the menu */
 }
 
 .recipes-menu li {
@@ -86,14 +87,8 @@ header {
 .banner {
     background-color: #3498db;
     color: #fff;
-    padding: 8px;
-    text-align: center;
-}
-
-.banner-space {
-    background-color: #0000;
-    color: #fff;
     padding: 10px;
+    text-align: center;
 }
 
 h1 {
