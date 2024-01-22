@@ -5,9 +5,9 @@ body {
 }
 
 header {
-    background-color: #333; /* Adjust the color as needed */
-    color: #fff; /* Adjust the text color as needed */
-    padding: 20px; /* Adjusted padding for the header */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,6 +26,16 @@ header {
     position: relative;
 }
 
+.menu a {
+    margin-right: 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #ddd; /* Change the hover color as needed */
+}
+
 .recipes-dropdown {
     position: relative;
     display: inline-block;
@@ -34,8 +44,8 @@ header {
 .recipes-menu {
     display: none;
     position: absolute;
-    background-color: #f9f9f9; /* Adjust the background color as needed */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add a shadow for a dropdown effect */
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
@@ -46,15 +56,17 @@ header {
 
 .recipes-menu li a {
     text-decoration: none;
-    color: #333; /* Adjust the text color as needed */
+    color: #333;
     display: block;
 }
 
-/* Show the dropdown menu on hover */
+.recipes-menu a:hover {
+    background-color: #ddd;
+}
+
 .recipes-dropdown:hover .recipes-menu {
     display: block;
 }
-
 
 .search {
     margin-right: 15px;
@@ -65,22 +77,28 @@ header {
 }
 
 .blue-banner {
-    background: url('images/banner.jpg') center/cover; 
-    color: #fff; /* Adjust the text color as needed */
-    padding: 100px 20px; /* Adjusted padding for the blue banner */
+    background: url('images/banner.jpg') center/cover;
+    color: #fff;
+    padding: 100px 20px;
     text-align: center;
 }
 
 .banner {
-    background-color: #3498db; /* Adjust the color as needed */
-    color: #fff; /* Adjust the text color as needed */
-    padding: 10px; /* Adjusted padding for the blue banner */
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
     text-align: center;
 }
 
+.banner-space {
+    background-color: #0000;
+    color: #fff;
+    padding: 5px;
+}
+
 h1 {
-    font-size: 46px; /* Adjust the font size as needed */
-    margin-bottom: 20px; /* Optional: Add some space below the h1 */
+    font-size: 46px;
+    margin-bottom: 20px;
 }
 
 .food-images {
@@ -91,10 +109,10 @@ h1 {
 
 .food-item {
     flex: 1;
-    margin: 0 10px; /* Adjust margin as needed */
+    margin: 0 10px;
     text-align: center;
 }
 
 .food-item img {
-    max-width: 100%; /* Ensure images don't exceed their container width */
+    max-width: 100%;
 }
