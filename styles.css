@@ -119,21 +119,21 @@ h1 {
 }
 
 .popup {
-    display: none;
+    display: flex;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%; /* Adjusted max width for the popup */
+    max-height: 80%; /* Adjusted max height for the popup */
+    background: rgba(255, 165, 0, 0.9);
+    z-index: 1000;
 }
 
 .popup-content {
-    background: #fff;
     padding: 20px;
     text-align: center;
+    margin: auto; /* Centering the content horizontally */
 }
 
 .popup img {
