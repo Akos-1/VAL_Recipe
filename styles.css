@@ -92,6 +92,13 @@ header {
     text-align: center;
 }
 
+.closing-banner {
+    background-color: #3498db;
+    color: #fff;
+    padding: 400px;
+    text-align: center;
+}
+
 h1 {
     font-size: 46px;
     margin-bottom: 20px;
