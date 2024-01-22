@@ -1,11 +1,10 @@
 // script.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Show the popup when the page is loaded
+    document.getElementById('popup').style.display = 'flex';
 
-document.addEventListener('DOMContentLoaded', openPopup);
-
-function openPopup() {
-    document.getElementById('popupContainer').style.display = 'flex';
-}
-
-function closePopup() {
-    document.getElementById('popupContainer').style.display = 'none';
-}
+    // Close the popup when the button is clicked
+    document.getElementById('closePopup').addEventListener('click', function () {
+        document.getElementById('popup').style.display = 'none';
+    });
+});
