@@ -3,6 +3,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 16px; /* Set a base font size for better responsiveness */
 }
 
 header {
@@ -10,7 +11,7 @@ header {
     color: #fff;
     padding: 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack items vertically on smaller screens */
     align-items: center;
 }
 
@@ -20,11 +21,13 @@ header {
 
 .top-right {
     display: flex;
+    flex-direction: column; /* Stack items vertically on smaller screens */
     align-items: center;
+    margin-top: 10px; /* Add space between menu and search on smaller screens */
 }
 
 .menu {
-    position: relative;
+    margin-top: 10px; /* Add space between logo and menu on smaller screens */
 }
 
 .menu a {
@@ -40,6 +43,7 @@ header {
 .recipes-dropdown {
     position: relative;
     display: inline-block;
+    margin-top: 10px; /* Add space between menu items on smaller screens */
 }
 
 .recipes-menu {
@@ -48,7 +52,7 @@ header {
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    top: 100%; /* Adjust the top value to move the dropdown below the menu */
+    top: 100%;
 }
 
 .recipes-menu li {
@@ -71,7 +75,7 @@ header {
 }
 
 .search {
-    margin-right: 15px;
+    margin-top: 10px;
 }
 
 .search input {
@@ -85,28 +89,18 @@ header {
     text-align: center;
 }
 
-.banner-space {
-    background-color: #00000;
-    padding: 20px 20px;
-}
-
+.banner-space,
 .food-banner-space {
     background-color: #00000;
-    padding: 5px 20px;
+    padding: 20px;
 }
 
-.banner {
+.banner,
+.closing-banner {
     background-color: #3498db;
     color: #fff;
-    padding: 10px; 
+    padding: 10px;
     text-align: center;
-}
-
-.closing-banner {
-    background-color: #000000;
-    color: #fff;
-    padding: 300px; 
-    text-align: left;
 }
 
 .closing-banner {
@@ -114,28 +108,26 @@ header {
 }
 
 h1 {
-    font-size: 56px;
+    font-size: 4vw; /* Responsive font size based on viewport width */
     margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 3vw; /* Responsive font size based on viewport width */
     margin-bottom: 20px;
 }
 
 .food-images {
     display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
     justify-content: space-between;
     align-items: center;
 }
 
 .food-item {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 5px; /* Adjusted margin for better spacing on smaller screens */
     text-align: center;
-}
-
-.food-item img {
     max-width: 100%;
 }
 
@@ -145,20 +137,21 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8); /* color and transparency adjusted as needed */
-    backdrop-filter: blur(5px); /* blur strength adjusted as needed */
-    z-index: 2; /* To ensure the overlay is above the main content and below the popup */
-    display: none; /* Initially hide the overlay */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+    display: none;
 }
 
 .popup {
     display: flex;
+    flex-direction: column; /* Stack content vertically on smaller screens */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 60%; /* Adjusted max width for the popup */
-    max-height: 120%; /* Adjusted max height for the popup */
+    max-width: 90%; /* Adjusted max width for the popup */
+    max-height: 90vh; /* Adjusted max height for the popup */
     background: rgba(255, 165, 0, 0.9);
     z-index: 1000;
 }
@@ -166,7 +159,7 @@ h2 {
 .popup-content {
     padding: 20px;
     text-align: center;
-    margin: auto; /* Centering the content horizontally */
+    margin: auto;
 }
 
 .popup img {
@@ -176,17 +169,17 @@ h2 {
 
 .search-banner {
     background-color: #3498db;
-    color: #fff; 
+    color: #fff;
     padding: 30px;
     text-align: center;
 }
 
 .search-banner h2 {
-    font-size: 35px; 
+    font-size: 4vw; /* Responsive font size based on viewport width */
 }
 
 .search {
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 .search input {
@@ -195,12 +188,133 @@ h2 {
 
 .search button {
     padding: 8px 15px;
-    background-color: #fff; 
-    color: #3498db; 
+    background-color: #fff;
+    color: #3498db;
     border: none;
     cursor: pointer;
 }
 
 .search button:hover {
     background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    .menu a {
+        margin-right: 10px;
+    }
+
+    .top-right {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .recipes-dropdown {
+        margin-top: 5px;
+    }
+
+    .recipes-menu li {
+        padding: 5px;
+    }
+
+    .recipes-menu a:hover {
+        background-color: #ddd;
+    }
+
+    .search input {
+        padding: 5px;
+    }
+
+    .blue-banner {
+        padding: 80px 10px;
+    }
+
+    .banner-space,
+    .food-banner-space {
+        padding: 10px;
+    }
+
+    .h1 {
+        font-size: 5vw;
+    }
+
+    .h2 {
+        font-size: 4vw;
+    }
+
+    .food-item {
+        margin: 0 5px;
+    }
+
+    .popup {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .search-banner h2 {
+        font-size: 5vw;
+    }
+
+    .search button {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu a {
+        margin-right: 5px;
+    }
+
+    .recipes-dropdown {
+        margin-top: 3px;
+    }
+
+    .recipes-menu li {
+        padding: 3px;
+    }
+
+    .recipes-menu a:hover {
+        background-color: #ddd;
+    }
+
+    .search input {
+        padding: 5px;
+    }
+
+    .blue-banner {
+        padding: 60px 10px;
+    }
+
+    .banner-space,
+    .food-banner-space {
+        padding: 5px;
+    }
+
+    .h1 {
+        font-size: 6vw;
+    }
+
+    .h2 {
+        font-size: 5vw;
+    }
+
+    .food-item {
+        margin: 0 3px;
+    }
+
+    .popup {
+        max-width: 100%;
+        max-height: 100vh;
+    }
+
+    .search-banner h2 {
+        font-size: 6vw;
+    }
+
+    .search button {
+        padding: 8px 10px;
+    }
 }
