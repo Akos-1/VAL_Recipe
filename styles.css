@@ -94,14 +94,14 @@ header {
     background-color: #3498db;
     color: #fff;
     padding: 10px; 
-    text-align: left;
+    text-align: center;
 }
 
 .closing-banner {
     background-color: #000000;
     color: #fff;
-    padding: 10px; 
-    text-align: center;
+    padding: 300px; 
+    text-align: left;
 }
 
 .closing-banner {
@@ -110,6 +110,11 @@ header {
 
 h1 {
     font-size: 56px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
