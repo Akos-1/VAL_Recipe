@@ -18,18 +18,13 @@ class Recipe(db.Model):
 @app.route('/recipes', methods=['GET', 'POST'])
 def handle_recipes():
     if request.method == 'GET':
-        search_query = request.args.get('search')
-        if search_query:
-            # Handle search logic (case-insensitive search by title)
-            recipes = Recipe.query.filter(Recipe.title.ilike(f"%{search_query}%")).all()
-        else:
-            # Get all recipes
-            recipes = Recipe.query.all()
-
+        # Logic to get all recipes
+        recipes = Recipe.query.all()
         recipe_list = [{'id': recipe.id, 'title': recipe.title, 'ingredients': recipe.ingredients, 'instructions': recipe.instructions} for recipe in recipes]
         return jsonify({'recipes': recipe_list})
 
     elif request.method == 'POST':
+        # Logic to add a new recipe
         data = request.json
         new_recipe = Recipe(title=data['title'], ingredients=data['ingredients'], instructions=data['instructions'])
 
