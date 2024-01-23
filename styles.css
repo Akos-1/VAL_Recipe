@@ -85,6 +85,11 @@ header {
     text-align: center;
 }
 
+.banner-space {
+    background-color: #00000;
+    padding: 100px 20px;
+}
+
 .banner,
 .closing-banner {
     background-color: #3498db;
