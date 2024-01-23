@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-size: 16px; /* Set a base font size for better responsiveness */
+    font-size: 16px;
 }
 
 header {
@@ -11,7 +11,7 @@ header {
     color: #fff;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Stack items vertically on smaller screens */
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -21,13 +21,11 @@ header {
 
 .top-right {
     display: flex;
-    flex-direction: column; /* Stack items vertically on smaller screens */
     align-items: center;
-    margin-top: 10px; /* Add space between menu and search on smaller screens */
 }
 
 .menu {
-    margin-top: 10px; /* Add space between logo and menu on smaller screens */
+    position: relative;
 }
 
 .menu a {
@@ -43,7 +41,6 @@ header {
 .recipes-dropdown {
     position: relative;
     display: inline-block;
-    margin-top: 10px; /* Add space between menu items on smaller screens */
 }
 
 .recipes-menu {
@@ -75,7 +72,7 @@ header {
 }
 
 .search {
-    margin-top: 10px;
+    margin-right: 15px;
 }
 
 .search input {
@@ -108,26 +105,28 @@ header {
 }
 
 h1 {
-    font-size: 4vw; /* Responsive font size based on viewport width */
+    font-size: 56px;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 3vw; /* Responsive font size based on viewport width */
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
 .food-images {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
     justify-content: space-between;
     align-items: center;
 }
 
 .food-item {
     flex: 1;
-    margin: 0 5px; /* Adjusted margin for better spacing on smaller screens */
+    margin: 0 10px;
     text-align: center;
+}
+
+.food-item img {
     max-width: 100%;
 }
 
@@ -145,13 +144,12 @@ h2 {
 
 .popup {
     display: flex;
-    flex-direction: column; /* Stack content vertically on smaller screens */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 90%; /* Adjusted max width for the popup */
-    max-height: 90vh; /* Adjusted max height for the popup */
+    max-width: 60%;
+    max-height: 120%;
     background: rgba(255, 165, 0, 0.9);
     z-index: 1000;
 }
@@ -175,7 +173,7 @@ h2 {
 }
 
 .search-banner h2 {
-    font-size: 4vw; /* Responsive font size based on viewport width */
+    font-size: 35px;
 }
 
 .search {
@@ -198,7 +196,13 @@ h2 {
     background-color: #ddd;
 }
 
+/* Responsive Styles for Smaller Screens (Phones) */
+
 @media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
     header {
         padding: 10px;
     }
@@ -281,40 +285,4 @@ h2 {
     }
 
     .search input {
-        padding: 5px;
-    }
-
-    .blue-banner {
-        padding: 60px 10px;
-    }
-
-    .banner-space,
-    .food-banner-space {
-        padding: 5px;
-    }
-
-    .h1 {
-        font-size: 6vw;
-    }
-
-    .h2 {
-        font-size: 5vw;
-    }
-
-    .food-item {
-        margin: 0 3px;
-    }
-
-    .popup {
-        max-width: 100%;
-        max-height: 100vh;
-    }
-
-    .search-banner h2 {
-        font-size: 6vw;
-    }
-
-    .search button {
-        padding: 8px 10px;
-    }
-}
+        padding
