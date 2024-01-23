@@ -79,49 +79,33 @@ header {
     padding: 5px;
 }
 
-.blue-banner {
-    background: url('images/banner.jpg') center/cover;
+.blue-banner,
+.banner,
+.closing-banner {
     color: #fff;
-    padding: 100px 20px;
     text-align: center;
 }
 
-.banner-space,
-.food-banner-space {
-    background-color: #00000;
-    padding: 20px;
+.blue-banner {
+    background: url('images/banner.jpg') center/cover;
+    padding: 80px 20px;
 }
 
 .banner,
 .closing-banner {
     background-color: #3498db;
-    color: #fff;
     padding: 10px;
-    text-align: center;
-}
-
-.closing-banner {
-    padding: 40px;
-}
-
-h1 {
-    font-size: 56px;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
 }
 
 .food-images {
     display: flex;
+    flex-wrap: wrap; /* Allow food items to wrap on smaller screens */
     justify-content: space-between;
     align-items: center;
 }
 
 .food-item {
-    flex: 1;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width of food items with some spacing */
     margin: 0 10px;
     text-align: center;
 }
@@ -167,7 +151,6 @@ h2 {
 
 .search-banner {
     background-color: #3498db;
-    color: #fff;
     padding: 30px;
     text-align: center;
 }
@@ -196,11 +179,11 @@ h2 {
     background-color: #ddd;
 }
 
-/* Responsive Styles for Smaller Screens (Phones) */
+/* Responsive Styles for Smaller Screens */
 
 @media (max-width: 768px) {
     body {
-        font-size: 14px; /* Adjust font size for smaller screens */
+        font-size: 14px;
     }
 
     header {
@@ -211,21 +194,12 @@ h2 {
         margin-right: 10px;
     }
 
-    .top-right {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .recipes-dropdown {
-        margin-top: 5px;
-    }
-
     .recipes-menu li {
         padding: 5px;
     }
 
-    .recipes-menu a:hover {
-        background-color: #ddd;
+    .recipes-dropdown {
+        margin-top: 5px;
     }
 
     .search input {
@@ -233,24 +207,16 @@ h2 {
     }
 
     .blue-banner {
-        padding: 80px 10px;
+        padding: 60px 10px;
     }
 
-    .banner-space,
-    .food-banner-space {
-        padding: 10px;
-    }
-
-    .h1 {
-        font-size: 5vw;
-    }
-
-    .h2 {
-        font-size: 4vw;
+    .banner,
+    .closing-banner {
+        padding: 8px;
     }
 
     .food-item {
-        margin: 0 5px;
+        flex: 0 0 calc(50% - 20px);
     }
 
     .popup {
@@ -259,7 +225,7 @@ h2 {
     }
 
     .search-banner h2 {
-        font-size: 5vw;
+        font-size: 28px;
     }
 
     .search button {
@@ -285,4 +251,28 @@ h2 {
     }
 
     .search input {
-        padding
+        padding: 3px;
+    }
+
+    .blue-banner {
+        padding: 40px 10px;
+    }
+
+    .food-item {
+        flex: 0 0 calc(100% - 20px);
+        margin: 0 10px 10px 10px;
+    }
+
+    .popup {
+        max-width: 100%;
+        max-height: 100vh;
+    }
+
+    .search-banner h2 {
+        font-size: 22px;
+    }
+
+    .search button {
+        padding: 8px 8px;
+    }
+}
