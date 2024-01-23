@@ -90,6 +90,11 @@ header {
     padding: 20px 20px;
 }
 
+.food-banner-space {
+    background-color: #00000;
+    padding: 20px 20px;
+}
+
 .banner {
     background-color: #3498db;
     color: #fff;
