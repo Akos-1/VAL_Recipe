@@ -92,7 +92,7 @@ header {
 
 .banner,
 .closing-banner {
-    background-color: #3498db;
+    background-color: #000000;
     color: #fff;
     padding: 10px; /* Adjusted padding for the banners */
     text-align: center;
@@ -103,7 +103,7 @@ header {
 }
 
 h1 {
-    font-size: 46px;
+    font-size: 56px;
     margin-bottom: 20px;
 }
 
@@ -141,8 +141,8 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 80%; /* Adjusted max width for the popup */
-    max-height: 100%; /* Adjusted max height for the popup */
+    max-width: 60%; /* Adjusted max width for the popup */
+    max-height: 120%; /* Adjusted max height for the popup */
     background: rgba(255, 165, 0, 0.9);
     z-index: 1000;
 }
@@ -178,7 +178,7 @@ h1 {
 }
 
 .search button {
-    padding: 8px 15px;
+    padding: 40px 15px;
     background-color: #fff; /* Adjust the color as needed */
     color: #3498db; /* Adjust the text color as needed */
     border: none;
