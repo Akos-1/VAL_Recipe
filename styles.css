@@ -126,7 +126,7 @@ h1 {
     transform: translate(-50%, -50%);
     max-width: 80%; /* Adjusted max width for the popup */
     max-height: 90%; /* Adjusted max height for the popup */
-    background: rgb(255, 255, 240);
+    background: rgba(255, 165, 0, 0.9);
     z-index: 1000;
 }
 
