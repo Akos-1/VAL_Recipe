@@ -40,7 +40,6 @@ header {
 
 .recipes-dropdown {
     position: relative;
-    display: inline-block;
 }
 
 .recipes-menu {
@@ -49,7 +48,7 @@ header {
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    top: 100%;
+    top: 100%; /* Adjust the top value to move the dropdown below the menu */
 }
 
 .recipes-menu li {
@@ -67,7 +66,8 @@ header {
     background-color: #ddd;
 }
 
-.recipes-dropdown:hover .recipes-menu {
+.recipes-dropdown:hover .recipes-menu,
+.recipes-dropdown:focus-within .recipes-menu {
     display: block;
 }
 
