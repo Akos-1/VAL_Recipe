@@ -25,7 +25,9 @@ header {
 }
 
 .menu {
-    position: relative;
+    display: flex; /* Updated to display as flex container */
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding for the list */
 }
 
 .menu a {
