@@ -125,8 +125,8 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 80%; /* Adjusted max width for the popup */
-    max-height: 80%; /* Adjusted max height for the popup */
-    background: rgba(0, 0, 0, 0.7);
+    max-height: 90%; /* Adjusted max height for the popup */
+    background: rgb(255, 255, 240);
     z-index: 1000;
 }
 
