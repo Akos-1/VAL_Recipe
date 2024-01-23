@@ -14,6 +14,12 @@ class Recipe(db.Model):
 
     def __repr__(self):
         return f"<Recipe {self.title}>"
+db.create_all()
+
+# Manually add a recipe
+waakye_recipe = Recipe(title='Waakye', ingredients='Rice, Beans, Sorghum leaves, Salt, Water)
+db.session.add(waakye_recipe)
+db.session.commit()
 
 @app.route('/recipes', methods=['GET', 'POST'])
 def handle_recipes():
