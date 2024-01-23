@@ -134,7 +134,7 @@ header {
     transform: translate(-50%, -50%);
     max-width: 60%;
     max-height: 120%;
-    background: rgba(255, 165, 0, 0.9);
+    background: #808080;
     z-index: 1000;
 }
 
