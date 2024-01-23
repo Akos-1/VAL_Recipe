@@ -87,19 +87,25 @@ header {
 
 .banner-space {
     background-color: #00000;
-    padding: 30px 20px;
+    padding: 20px 20px;
 }
 
-.banner,
+.banner {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px; 
+    text-align: left;
+}
+
 .closing-banner {
     background-color: #000000;
     color: #fff;
-    padding: 10px; /* Adjusted padding for the banners */
+    padding: 10px; 
     text-align: center;
 }
 
 .closing-banner {
-    padding: 40px; /* Adjusted padding for the closing banner */
+    padding: 40px;
 }
 
 h1 {
@@ -159,18 +165,18 @@ h1 {
 }
 
 .search-banner {
-    background-color: #3498db; /* Adjust the color as needed */
-    color: #fff; /* Adjust the text color as needed */
-    padding: 20px; /* Adjust the padding as needed */
+    background-color: #3498db;
+    color: #fff; 
+    padding: 30px;
     text-align: center;
 }
 
-.search-banner h3 {
-    font-size: 24px; /* Adjust the font size as needed */
+.search-banner h2 {
+    font-size: 35px; 
 }
 
 .search {
-    margin-top: 10px; /* Adjust the margin as needed */
+    margin-top: 10px; 
 }
 
 .search input {
@@ -178,14 +184,13 @@ h1 {
 }
 
 .search button {
-    padding: 40px 15px;
-    background-color: #fff; /* Adjust the color as needed */
-    color: #3498db; /* Adjust the text color as needed */
+    padding: 8px 15px;
+    background-color: #fff; 
+    color: #3498db; 
     border: none;
     cursor: pointer;
 }
 
 .search button:hover {
-    background-color: #ddd; /* Adjust the hover color as needed */
+    background-color: #ddd;
 }
-
