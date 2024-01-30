@@ -2,6 +2,8 @@ VAL Recipes
 
 VAL Recipes is a digital recipe book that focuses on West African dishes. It provides a platform for users to manage and explore a collection of West African recipes. Whether you want to add your own recipes, edit existing ones, or simply discover new culinary wonders from West Africa, VAL Recipes is your passport to authentic flavors.
 
+Link to our deployed site: https://akos-1.github.io/VAL_Recipe/#
+
 Features
 Recipe Management: Add, edit, and delete recipes effortlessly.
 Categorization: Organize recipes by categories for easy navigation.
@@ -45,4 +47,9 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 Acknowledgments
 Special thanks to Veronica Gyasi, Agnes Narh and Lebene Gbebleou-Sleem for their valuable contributions.
 Inspired by the diverse and delicious West African culinary traditions.
+
+Linkedln
+Veronica Gyasi - https://www.linkedin.com/in/veronica-gyasi-5353a51a2
+Agnes Narh - 
+Lebene Gbebleou-Sleem -
 
