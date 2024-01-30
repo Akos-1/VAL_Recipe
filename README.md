@@ -49,7 +49,10 @@ Special thanks to Veronica Gyasi, Agnes Narh and Lebene Gbebleou-Sleem for their
 Inspired by the diverse and delicious West African culinary traditions.
 
 Linkedln
+
 Veronica Gyasi - https://www.linkedin.com/in/veronica-gyasi-5353a51a2
+
 Agnes Narh - 
-Lebene Gbebleou-Sleem -
+
+Lebene Gbebleou-Sleem - https://www.linkedin.com/in/lebene-gbebleou-sleem-b0609514a
 
