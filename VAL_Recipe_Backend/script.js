@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginLink = document.getElementById('loginLink');
-    const loginRegisterPanel = document.getElementById('loginRegisterPanel');
+    const loginSlidePanel = document.getElementById('loginSlidePanel');
 
     loginLink.addEventListener('click', function (event) {
         event.preventDefault();
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function toggleLoginForm() {
-        loginRegisterPanel.classList.toggle('slide-in');
+        loginSlidePanel.classList.toggle('slide-in');
     }
 });
 
