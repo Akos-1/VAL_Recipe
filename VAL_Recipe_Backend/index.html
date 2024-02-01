@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAL's Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- overlay right after the opening body tag to blur page -->
+    <div class="overlay" id="overlay"></div>
+	
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Logo">
+        </div>
+        <div class="top-right">
+            <div class="menu">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Log In</a>
+                <div class="recipes-dropdown">
+                    <span class="recipes-label">Recipes</span>
+                    <ul class="recipes-menu">
+                        <li><a href="#">Ghana</a></li>
+                        <li><a href="#">Nigeria</a></li>
+                        <li><a href="#">Senegal</a></li>
+                        <li><a href="#">Ivory Coast</a></li>
+                    </ul>
+                </div>
+
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="search">
+                <!-- Add your search form here -->
+                <form action="#" method="get" onsubmit="searchRecipes(event)">
+                    <input type="text" name="search" placeholder="Search Recipe...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Recipe items will be dynamically added here -->
+    <ul id="recipe-list">
+    <!-- Add more recipes as needed -->
+    </ul>
+
+    <div class="blue-banner">
+        <h1>Welcome to VAL's Recipes</h1>
+        <h2>Journey Through West Africa's Culinary Wonders</h2>
+    </div>
+
+    <div class="banner-space">
+    </div>
+
+    <div class="banner">
+        <h3>Trending Recipes</h3>
+    </div>
+
+    <div class="food-banner-space">
+    </div>
+
+    <div class="food-images">
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=pIuAG2eUlTM" target="_blank">
+                <img src="images/Waakye.jpg" alt="Waakye">
+                <h2>Waakye</h2>
+            </a>
+        </div>
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=NtqPthoy5i0" target="_blank">
+                <img src="images/Amala.jpg" alt="Amala">
+                <h2>Amala</h2>
+            </a>
+        </div>
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=ZBUhn9Vosu4" target="_blank">
+                <img src="images/Atieke.jpg" alt="Atieke">
+                <h2>Attieke</h2>
+            </a>
+        </div>
+    </div>
+
+    <div class="food-images">
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=HyOeJbpkCp0" target="_blank">
+                <img src="images/Thieboudienne.jpg" alt="Thieboudienne">
+                <h2>Thieboudienne</h2>
+            </a>
+        </div>
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=SXC_6HA8sV8" target="_blank">
+                <img src="images/Granat-Soup.jpg" alt="Granat Soup">
+                <h2>Granat Soup</h2>
+            </a>
+        </div>
+        <div class="food-item">
+            <a href="https://www.youtube.com/watch?v=rVPuHegj95U" target="_blank">
+                <img src="images/Kuli-kuli.jpg" alt="Kuli-kuli">
+                <h2>Kuli-kuli</h2>
+            </a>
+        </div>
+    </div>
+
+    <!-- Banner with Search Bar -->
+	<div class="search-banner">
+		<h2>What do you want to cook today?</h2>
+		<div class="search">
+			<!--search form  -->
+			<form action="#" method="get">
+				<input type="text" name="search" placeholder="Search Recipe...">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+	</div>	
+
+    <!-- Popup HTML -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <img src="images/logo.jpg" alt="Popup Image">
+            <h1>Welcome to VAL's Recipes</h1> 
+            <p>VAL's Recipes is your go-to digital cookbook for West African dishes. Explore, manage, and discover authentic flavors with ease. Add, edit, or savor a collection of culinary wonders from West Africa effortlessly.</p>
+            <button id="closePopup">Continue to VAL's Recipes</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+    
+    <div class="banner-space">
+    </div>
+	
+    <div class="closing-banner">
+        <h3>Contact us</h3>
+    </div>
+
+    <script src="/root/VAL_Recipe/VAL_Recipe_Backend/login.js"></script>
+</body>
+</html>
