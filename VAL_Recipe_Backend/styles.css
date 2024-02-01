@@ -277,4 +277,20 @@ header {
     .search button {
         padding: 8px 8px;
     }
+
+    #loginRegisterPanel {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen */
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    transition: right 0.3s ease-in-out; /* Transition effect */
+}
+
+#loginRegisterPanel.slide-in {
+    right: 0; /* Slide in */
+}
+
+
 }

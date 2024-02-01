@@ -1,32 +1,15 @@
-// code to handle different functionalities. Full documentation to be completed later
-
 document.addEventListener('DOMContentLoaded', function () {
     const loginLink = document.getElementById('loginLink');
-    const loginRegisterPopup = document.getElementById('loginRegisterPopup');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    
+    const loginRegisterPanel = document.getElementById('loginRegisterPanel');
+
     loginLink.addEventListener('click', function (event) {
         event.preventDefault();
         toggleLoginForm();
     });
 
     function toggleLoginForm() {
-        loginRegisterPopup.style.display = (loginRegisterPopup.style.display === 'none' || loginRegisterPopup.style.display === '') ? 'block' : 'none';
-        showLoginForm(); // Display the login form by default
+        loginRegisterPanel.classList.toggle('slide-in');
     }
-
-    function showLoginForm() {
-        loginForm.style.display = 'block';
-        registerForm.style.display = 'none';
-    }
-
-    window.showRegisterForm = function () {
-        registerForm.style.display = 'block';
-        loginForm.style.display = 'none';
-    }
-
-    window.showLoginForm = showLoginForm;
 });
 
 async function searchRecipes(event) {
