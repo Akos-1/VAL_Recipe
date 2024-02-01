@@ -7,6 +7,22 @@
     <title>VAL's Recipes</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginLink = document.getElementById('loginLink');
+            const loginForm = document.getElementById('loginForm');
+
+            loginLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                toggleLoginForm();
+            });
+
+            function toggleLoginForm() {
+                loginForm.style.display = (loginForm.style.display === 'none' || loginForm.style.display === '') ? 'block' : 'none';
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -21,7 +37,7 @@
             <div class="menu">
                 <a href="#">Home</a>
                 <a href="#">About Us</a>
-                <a href="#">Log In</a>
+                <a href="#" id="loginLink">Log In</a>
                 <div class="recipes-dropdown">
                     <span class="recipes-label">Recipes</span>
                     <ul class="recipes-menu">
@@ -128,6 +144,24 @@
         </div>
     </div>
 
+    <!-- Login Form -->
+    <div id="loginForm" style="display: none;">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Registration Form -->
+    <div id="registerForm" style="display: none;">
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" name="registerUsername">
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" name="registerPassword">
+        <button onclick="register()">Register</button>
+    </div>
+
     <script src="popup.js"></script>
     
     <div class="banner-space">
@@ -137,6 +171,6 @@
         <h3>Contact us</h3>
     </div>
 
-    <script src="/root/VAL_Recipe/VAL_Recipe_Backend/login.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

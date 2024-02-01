@@ -2,6 +2,18 @@ function login() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
+	document.addEventListener('DOMContentLoaded', function () {
+    const loginLink = document.getElementById('loginLink');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    loginLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    });
+});
+
     fetch('/api/login', {
         method: 'POST',
         headers: {
