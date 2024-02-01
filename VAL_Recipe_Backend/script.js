@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
 async function searchRecipes(event) {
     event.preventDefault();
 
