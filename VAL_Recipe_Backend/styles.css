@@ -278,18 +278,18 @@ header {
         padding: 8px 8px;
     }
 
-    #loginRegisterPanel {
+    #loginSlidePanel {
     position: fixed;
     top: 0;
-    right: -300px; /* Start off-screen */
-    width: 300px;
+    right: -300px; /* Initially hidden off-screen */
     height: 100%;
+    width: 300px;
     background-color: white;
-    transition: right 0.3s ease-in-out; /* Transition effect */
+    transition: right 0.3s ease-in-out; /* Add transition for smooth sliding */
 }
 
-#loginRegisterPanel.slide-in {
-    right: 0; /* Slide in */
+.slide-in {
+    right: 0;
 }
 
 
