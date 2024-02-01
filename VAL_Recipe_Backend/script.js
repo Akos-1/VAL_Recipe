@@ -1,4 +1,4 @@
-// script.js
+// code to handle different functionalities. Full documentation to be completed later
 
 document.addEventListener('DOMContentLoaded', function () {
     const loginLink = document.getElementById('loginLink');
@@ -53,7 +53,7 @@ async function searchRecipes(event) {
 }
 
 function updateRecipeList(recipes) {
-    // Update your recipe list HTML here
+    // Update recipe list HTML here
     const recipeList = document.getElementById('recipe-list');
     recipeList.innerHTML = '';
 
@@ -82,13 +82,13 @@ function login() {
         return response.json();
     })
     .then(data => {
-        // Handle the response, e.g., show a success message or redirect
+        // To Handle the response, success message or redirect
         console.log(data);
-        alert('Login successful!'); // You can replace this with your own logic
+        alert('Login successful!'); 
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Login failed!'); // You can replace this with your own error handling
+        alert('Wrong email or password!'); 
     });
 }
 
@@ -110,13 +110,13 @@ function register() {
         return response.json();
     })
     .then(data => {
-        // Handle the response, e.g., show a success message or redirect
+        //response, success message or redirect
         console.log(data);
-        alert('Registration successful!'); // You can replace this with your own logic
+        alert('Registration successful!'); 
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Registration failed!'); // You can replace this with your own error handling
+        alert('Registration failed!'); 
     });
 }
 
