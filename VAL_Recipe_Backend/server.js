@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname, '')));
 
-// Dummy recipe data (replace this with your actual data or connect to a database)
+// Cuurent recipe data (we will connect to a database later)
 const recipes = [
   { id: 1, name: 'Waakye' },
   { id: 2, name: 'Amala' },
@@ -21,7 +21,7 @@ const recipes = [
   { id: 6, name: 'Kuli-kuli' },
 ];
 
-// In-memory user data (replace this with a database)
+// In-memory user data (to be replaced this with a database)
 const users = [];
 
 // Search recipes endpoint
