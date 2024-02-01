@@ -1,8 +1,4 @@
-function login() {
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-	document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const loginLink = document.getElementById('loginLink');
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
@@ -13,6 +9,10 @@ function login() {
         registerForm.style.display = 'none';
     });
 });
+
+function login() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
 
     fetch('/api/login', {
         method: 'POST',
