@@ -7,7 +7,10 @@ const User = require('./models/User');
 const Recipe = require('./models/Recipe');
 
 const app = express();
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 5006;
+
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
 
@@ -140,6 +143,12 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
+});
+
+
+// For any other route, serve the 'index.html' file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
