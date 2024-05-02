@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
-const { Recipe, User } = require('./models');
+const User = require('./models/User');
+const Recipe = require('./models/Recipe');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
