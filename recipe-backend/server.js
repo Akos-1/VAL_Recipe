@@ -7,7 +7,7 @@ const User = require('./models/User');
 const Recipe = require('./models/Recipe');
 
 const app = express();
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5005;
 
 app.use(bodyParser.json());
 
