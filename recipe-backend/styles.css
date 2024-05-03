@@ -128,6 +128,25 @@ header {
     display: none;
 }
 
+/* Styles for login form container */
+.login-form-container {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Initially hidden off-screen */
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out; /* Transition for sliding animation */
+}
+
+/* Styles for active login form container */
+.login-form-container.active {
+    right: 0; /* Slide in when active */
+}
+
+
 .popup {
     display: flex;
     position: fixed;
