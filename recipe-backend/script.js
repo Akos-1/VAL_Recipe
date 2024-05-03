@@ -10,6 +10,16 @@ function togglePopup(popupId) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the "Register here" link
+    document.getElementById('register-link').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        toggleRegisterForm(); // Toggle the registration form visibility
+    });
+
+    // Add event listener to the register form for submission
+    document.getElementById('register-form').addEventListener('submit', registerUser);
+});
 
 // Function to toggle the registration form
 function toggleRegisterForm() {
@@ -21,24 +31,27 @@ function toggleRegisterForm() {
     }
 }
 
-// Add event listener to the "Register here" link
-document.getElementById('register-link').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    toggleRegisterForm(); // Toggle the registration form visibility
-});
-
 // Function to register a new user
 async function registerUser(event) {
     event.preventDefault();
+    const name = document.querySelector('#register-name').value;
     const email = document.querySelector('#register-email').value;
     const password = document.querySelector('#register-password').value;
+    const confirmPassword = document.querySelector('#register-confirm-password').value;
+    
+    // Validate password and confirm password
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+    }
+
     try {
         const response = await fetch('/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ name, email, password })
         });
         if (!response.ok) {
             throw new Error('Registration failed');
