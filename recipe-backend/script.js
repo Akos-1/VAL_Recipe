@@ -1,11 +1,11 @@
 function togglePopup(popupId) {
     const popup = document.getElementById(popupId);
     const overlay = document.getElementById('overlay-login');
-    if (popup.style.display === 'block') {
-        popup.style.display = 'none';
+    if (popup.classList.contains('active')) {
+        popup.classList.remove('active');
         overlay.style.display = 'none';
     } else {
-        popup.style.display = 'block';
+        popup.classList.add('active');
         overlay.style.display = 'block';
     }
 }
