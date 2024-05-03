@@ -1,3 +1,16 @@
+// Function to toggle the login popup
+function togglePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    if (popup.style.display === 'block') {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    } else {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+    }
+}
+
 // Function to register a new user
 async function registerUser(event) {
     event.preventDefault();
