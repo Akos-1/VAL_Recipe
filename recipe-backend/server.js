@@ -17,14 +17,14 @@ app.use(bodyParser.json());
 
 // User registration endpoint
 app.post('/auth/register', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const existingUser = await User.findOne({ where: { username } });
+        const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
-            return res.status(400).json({ message: 'Username already taken' });
+            return res.status(400).json({ message: 'user with email already exists' });
         }
         const hashedPassword = bcrypt.hashSync(password, 10);
-        await User.create({ username, password: hashedPassword });
+        await User.create({ email, password: hashedPassword });
         res.status(201).json({ message: 'Registration successful!' });
     } catch (error) {
         console.error(error);
@@ -34,11 +34,11 @@ app.post('/auth/register', async (req, res) => {
 
 // User login endpoint
 app.post('/auth/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ where: { username } });
+        const user = await User.findOne({ where: { email } });
         if (!user || !bcrypt.compareSync(password, user.password)) {
-            return res.status(401).json({ message: 'Invalid username or password' });
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
         res.json({ message: 'Login successful!' });
     } catch (error) {
