@@ -1,3 +1,4 @@
+const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -13,6 +14,16 @@ const PORT = process.env.PORT || 5006;
 app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
+
+// Connect to the SQLite database
+const dbPath = '/root/VAL_Recipe/recipe-backend/recipes.db';
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        console.error('Error opening database:', err.message);
+    } else {
+        console.log('Connected to the SQLite database.');
+    }
+});
 
 
 // User registration endpoint
