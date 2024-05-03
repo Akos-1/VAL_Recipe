@@ -1,7 +1,7 @@
 // Function to toggle the login popup
 function togglePopup(popupId) {
     const popup = document.getElementById(popupId);
-    const overlay = document.getElementById('overlay');
+    const overlay = document.getElementById('overlay-login');
     if (popup.style.display === 'block') {
         popup.style.display = 'none';
         overlay.style.display = 'none';
