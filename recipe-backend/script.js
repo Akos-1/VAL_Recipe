@@ -10,10 +10,27 @@ function togglePopup(popupId) {
     }
 }
 
+
+// Function to toggle the registration form
+function toggleRegisterForm() {
+    const registerForm = document.getElementById('register-form');
+    if (registerForm.style.display === 'block') {
+        registerForm.style.display = 'none';
+    } else {
+        registerForm.style.display = 'block';
+    }
+}
+
+// Add event listener to the "Register here" link
+document.getElementById('register-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    toggleRegisterForm(); // Toggle the registration form visibility
+});
+
 // Function to register a new user
 async function registerUser(event) {
     event.preventDefault();
-    const username = document.querySelector('#register-username').value;
+    const email = document.querySelector('#register-email').value;
     const password = document.querySelector('#register-password').value;
     try {
         const response = await fetch('/auth/register', {
@@ -21,10 +38,10 @@ async function registerUser(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email, password })
         });
         if (!response.ok) {
-            throw new Error('Failed to register user');
+            throw new Error('Registration failed');
         }
         alert('Registration successful!');
         // Optionally, redirect to login page after successful registration
@@ -36,7 +53,7 @@ async function registerUser(event) {
 // Function to log in an existing user
 async function loginUser(event) {
     event.preventDefault();
-    const username = document.querySelector('#login-username').value;
+    const email = document.querySelector('#login-email').value;
     const password = document.querySelector('#login-password').value;
     try {
         const response = await fetch('/auth/login', {
@@ -44,10 +61,10 @@ async function loginUser(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email, password })
         });
         if (!response.ok) {
-            throw new Error('Failed to log in user');
+            throw new Error('Login failed');
         }
         alert('Login successful!');
         // Optionally, redirect to dashboard after successful login
