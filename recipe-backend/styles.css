@@ -144,6 +144,11 @@ header {
     right: 0; /* Slide in when active */
 }
 
+.register-form {
+    display: none; /* Initially hide the registration form */
+    /* Add additional styling as needed */
+}
+
 
 .popup {
     display: flex;
