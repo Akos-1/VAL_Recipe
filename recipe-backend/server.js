@@ -16,27 +16,27 @@ app.use(express.static(path.join(__dirname, '')));
 app.use(bodyParser.json());
 
 // Connect to the mysql database 
-//const mysql = require('mysql2/promise');
+const mysql = require('mysql2/promise');
 
-//const dbConfig = {
-    //host: 'localhost',
-    //user: 'VAL_Recipe',
-    //password: 'VAL_Recipe',
-  //  database: 'VAL_Recipe'
-//};
+const dbConfig = {
+    host: 'localhost',
+    user: 'val',
+    password: '1',
+    database: 'val'
+};
 
-//const db = mysql.createPool(dbConfig);
+const db = mysql.createPool(dbConfig);
 
-//db.getConnection((err, connection) => {
-    //if (err) {
-        //console.error('Error connecting to database:', err);
-      //  return;
-    //}
-    //console.log('Connected to the MySQL database.');
-  //  connection.release();
-//});
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error('Error connecting to database:', err);
+        return;
+    }
+    console.log('Connected to the MySQL database.');
+    connection.release();
+});
 
-//module.exports = db; 
+module.exports = db; 
 
 
 // User registration endpoint
