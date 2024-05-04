@@ -4,9 +4,9 @@ const app = express();
 
 const dbConfig = {
     host: 'localhost',
-    user: 'VAL_Recipe',
-    password: 'VAL_Recipe',
-    database: 'VAL_Recipe'
+    user: 'val',
+    password: '1',
+    database: 'val'
 };
 
 // Create a connection pool
