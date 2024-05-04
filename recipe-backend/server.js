@@ -15,15 +15,28 @@ app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
 
-// Connect to the SQLite database
-const dbPath = '/root/VAL_Recipe/recipe-backend/recipes.db';
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+// Connect to the mysql database 
+const mysql = require('mysql2/promise');
+
+const dbConfig = {
+    host: 'localhost',
+    user: 'VAL_Recipe',
+    password: 'VAL_Recipe',
+    database: 'VAL_Recipe'
+};
+
+const db = mysql.createPool(dbConfig);
+
+db.getConnection((err, connection) => {
     if (err) {
-        console.error('Error opening database:', err.message);
-    } else {
-        console.log('Connected to the SQLite database.');
+        console.error('Error connecting to database:', err);
+        return;
     }
+    console.log('Connected to the MySQL database.');
+    connection.release();
 });
+
+module.exports = db;
 
 
 // User registration endpoint
