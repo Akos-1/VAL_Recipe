@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+const mysql = require('mysql2/promise');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -15,8 +15,7 @@ app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
 
-// Connect to the mysql database 
-const mysql = require('mysql2/promise');
+// Connect to the mysql database
 
 const dbConfig = {
     host: 'localhost',
