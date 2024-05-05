@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../../config/database'); // Adjust the path as needed
 
 const User = db.define('user', {
-  username: {
+  email: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true
