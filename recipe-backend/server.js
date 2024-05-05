@@ -1,28 +1,19 @@
+const mysql = require('mysql2/promise');
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
-const sequelize = require('/root/VAL_Recipe/recipe-backend/config/database');
-const mysql = require('mysql2/promise');
 
 const app = express();
 const PORT = process.env.PORT || 5006;
 
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname, '')));
-app.use(bodyParser.json());
 
-// Connect to the database using Sequelize
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection to the database has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+app.use(bodyParser.json());
 
 // Connect to the mysql database
 
@@ -190,5 +181,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT});
 });
