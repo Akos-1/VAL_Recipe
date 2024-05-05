@@ -25,33 +25,44 @@ const pool = mysql.createPool({
   database: 'val'
 });
 
-app.post('/auth/register', async (req, res) => {
-  const { email, password } = req.body;
+// Middleware to get a database connection from the pool
+const getConnectionFromPool = async (req, res, next) => {
+    try {
+        const connection = await pool.getConnection();
+        req.dbConnection = connection;
+        next();
+    } catch (error) {
+        console.error('Error getting database connection:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
 
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
+// Registration endpoint
+app.post('/auth/register', getConnectionFromPool, async (req, res) => {
+    const { email, password } = req.body;
+    const { dbConnection } = req; // Get the connection from the request object
 
-  try {
-    // Get a connection from the pool
-    const connection = await pool.getConnection();
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Execute registration logic: Insert user with hashed password into the database
-    await connection.query(
-      'INSERT INTO users (email, password) VALUES (?, ?)',
-      [email, hashedPassword]
-    );
+    try {
+        // Execute registration logic: Insert user with hashed password into the database
+        await dbConnection.query(
+            'INSERT INTO users (email, password) VALUES (?, ?)',
+            [email, hashedPassword]
+        );
 
-    // Release the connection back to the pool
-    connection.release();
-
-    // Send response indicating successful registration
-    res.status(200).json({ message: 'User registered successfully' });
-  } catch (error) {
-    // Handle any errors that occur during registration
-    console.error('Error during registration:', error);
-    // Send an error response
-    res.status(500).json({ error: 'An error occurred during registration' });
-  }
+        // Send response indicating successful registration
+        res.status(200).json({ message: 'User registered successfully' });
+    } catch (error) {
+        // Handle any errors that occur during registration
+        console.error('Error during registration:', error);
+        // Send an error response
+        res.status(500).json({ error: 'An error occurred during registration' });
+    } finally {
+        // Release the connection back to the pool
+        dbConnection.release();
+    }
 });
 
 
