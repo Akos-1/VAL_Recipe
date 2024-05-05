@@ -28,51 +28,55 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig);
 
 // Test database connection route
-app.get('/testdb', async (req, res) => {
-    try {
-        // Get a connection from the pool
-        const connection = await pool.getConnection();
-        // Execute a query
-        const [rows, fields] = await connection.query('SELECT * FROM users');
-        // Release the connection
-        connection.release();
-        res.json({ message: 'Database connection successful', data: rows });
-    } catch (error) {
-        console.error('Database error:', error);
-        res.status(500).json({ message: 'Database error' });
-    }
+app.get('/testdb', (req, res) => {
+    pool.query('SELECT * FROM users', (error, results, fields) => {
+        if (error) {
+            console.error('Database error:', error);
+            res.status(500).json({ message: 'Database error' });
+        } else {
+            res.json({ message: 'Database connection successful', data: results });
+        }
+    });
 });
 
-let connection;
-
 // User registration endpoint
-app.post('/auth/register', async (req, res) => {
+app.post('/auth/register', (req, res) => {
     const { email, password } = req.body;
-    try {
-        // Get a connection from the pool
-        connection = await pool.getConnection();
-
-        // Check if the email already exists in the database
-        const [existingUsers] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
-        if (existingUsers.length > 0) {
-            connection.release(); // Release the connection
-            return res.status(400).json({ message: 'User with email already exists' });
+    pool.getConnection((error, connection) => {
+        if (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal server error' });
+            return;
         }
 
-        // Hash the password
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        connection.execute('SELECT * FROM users WHERE email = ?', [email], (error, existingUsers) => {
+            if (error) {
+                connection.release();
+                console.error(error);
+                res.status(500).json({ message: 'Internal server error' });
+                return;
+            }
 
-        // Insert the new user into the database
-        const [result] = await connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
+            if (existingUsers.length > 0) {
+                connection.release();
+                res.status(400).json({ message: 'User with email already exists' });
+                return;
+            }
 
-        connection.release(); // Release the connection
+            const hashedPassword = bcrypt.hashSync(password, 10);
 
-        // Respond with success message
-        res.status(201).json({ message: 'Registration successful!' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+            connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword], (error, result) => {
+                connection.release();
+                if (error) {
+                    console.error(error);
+                    res.status(500).json({ message: 'Internal server error' });
+                    return;
+                }
+
+                res.status(201).json({ message: 'Registration successful!' });
+            });
+        });
+    });
 });
 
 // User login endpoint
