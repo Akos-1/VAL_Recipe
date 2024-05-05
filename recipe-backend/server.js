@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
-const sequelize = require('./recipe-backend/config/database');
+const sequelize = require('/root/VAL_Recipe/recipe-backend/config/database');
 
 const app = express();
 const PORT = process.env.PORT || 5006;
