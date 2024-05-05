@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -17,45 +17,40 @@ app.use(bodyParser.json());
 
 // Connect to the mysql database
 
-const dbConfig = {
-    host: 'localhost',
-    user: 'val',
-    password: '1',
-    database: 'val'
-};
-
-console.log(`Connecting to database: ${dbConfig.host}:${dbConfig.port}`);
-
-mysql.createPool(dbConfig).then((pool) => {
-  console.log('Connected to database!');
-}).catch((err) => {
-  console.error('Error connecting to database:', err);
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'val',
+  password: '1',
+  database: 'val'
 });
 
-// Registration endpoint
 app.post('/auth/register', async (req, res) => {
   const { email, password } = req.body;
 
-  // Create a connection to the database
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    // Get a connection from the pool
+    const connection = await pool.getConnection();
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Insert user into the database
-    const [result] = await connection.execute(
+    // Execute registration logic: Insert user with hashed password into the database
+    await connection.execute(
       'INSERT INTO users (email, password) VALUES (?, ?)',
       [email, hashedPassword]
     );
 
-    // Close the connection
-    await connection.end();
+    // Release the connection back to the pool
+    connection.release();
 
-    res.status(201).json({ message: 'User registered successfully' });
+    // Send response indicating successful registration
+    res.status(200).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('Registration error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    // Handle any errors that occur during registration
+    console.error('Error during registration:', error);
+    // Send an error response
+    res.status(500).json({ error: 'An error occurred during registration' });
   }
 });
 
