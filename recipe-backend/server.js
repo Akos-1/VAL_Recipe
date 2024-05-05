@@ -1,93 +1,82 @@
-const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
+const sequelize = require('./config/database'); // Import Sequelize instance
 
 const app = express();
 const PORT = process.env.PORT || 5006;
 
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname, '')));
-
 app.use(bodyParser.json());
+
+// Connect to the database using Sequelize
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 // Connect to the mysql database
 
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'val',
-  password: '1',
-  database: 'val'
-});
-
-// Middleware to get a database connection from the pool
-const getConnectionFromPool = async (req, res, next) => {
-    try {
-        const connection = await pool.getConnection();
-        req.dbConnection = connection;
-        next();
-    } catch (error) {
-        console.error('Error getting database connection:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+const dbConfig = {
+    host: 'localhost',
+    user: 'val',
+    password: '1',
+    database: 'val'
 };
 
-// Registration endpoint
-app.post('/auth/register', getConnectionFromPool, async (req, res) => {
-    const { email, password } = req.body;
-    const { dbConnection } = req; // Get the connection from the request object
+// Create a connection pool
+const pool = mysql.createPool(dbConfig);
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
+// Test database connection route
+app.get('/testdb', async (req, res) => {
     try {
-        // Execute registration logic: Insert user with hashed password into the database
-        await dbConnection.query(
-            'INSERT INTO users (email, password) VALUES (?, ?)',
-            [email, hashedPassword]
-        );
-
-        // Send response indicating successful registration
-        res.status(200).json({ message: 'User registered successfully' });
+        // Get a connection from the pool
+        const connection = await pool.getConnection();
+        // Execute a query
+        const [rows, fields] = await connection.query('SELECT * FROM users');
+        // Release the connection
+        connection.release();
+        res.json({ message: 'Database connection successful', data: rows });
     } catch (error) {
-        // Handle any errors that occur during registration
-        console.error('Error during registration:', error);
-        // Send an error response
-        res.status(500).json({ error: 'An error occurred during registration' });
-    } finally {
-        // Release the connection back to the pool
-        dbConnection.release();
+        console.error('Database error:', error);
+        res.status(500).json({ message: 'Database error' });
     }
 });
 
+
+// User registration endpoint
+app.post('/auth/register', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const existingUser = await User.findOne({ where: { email } });
+        if (existingUser) {
+            return res.status(400).json({ message: 'user with email already exists' });
+        }
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        await User.create({ email, password: hashedPassword });
+        res.status(201).json({ message: 'Registration successful!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 // User login endpoint
 app.post('/auth/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        // Get a connection from the pool
-        connection = await pool.getConnection();
-        
-        // Check if the user with the provided email exists
-        const [users] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
-        if (users.length === 0) {
+        const user = await User.findOne({ where: { email } });
+        if (!user || !bcrypt.compareSync(password, user.password)) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-
-        const user = users[0];
-
-        // Compare the hashed password with the provided password
-        const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) {
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
-
-        // Respond with success message
         res.json({ message: 'Login successful!' });
     } catch (error) {
         console.error(error);
@@ -107,14 +96,19 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-
 // Recipe search endpoint
 app.get('/recipes/search', async (req, res) => {
     const searchQuery = req.query.search || '';
     try {
-        // Get a connection from the pool
-        connection = await pool.getConnection();
-        const [recipes] = await connection.execute('SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ? OR instructions LIKE ?', [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
+        const recipes = await Recipe.findAll({
+            where: {
+                [Sequelize.Op.or]: [
+                    { title: { [Sequelize.Op.like]: `%${searchQuery}%` } },
+                    { ingredients: { [Sequelize.Op.like]: `%${searchQuery}%` } },
+                    { instructions: { [Sequelize.Op.like]: `%${searchQuery}%` } }
+                ]
+            }
+        });
         res.json({ recipes });
     } catch (error) {
         console.error(error);
@@ -126,8 +120,8 @@ app.get('/recipes/search', async (req, res) => {
 app.post('/recipes/add', async (req, res) => {
     const { title, ingredients, instructions, userId } = req.body;
     try {
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, userId) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userId]);
-        res.status(201).json({ message: 'Recipe added successfully' });
+        const recipe = await Recipe.create({ title, ingredients, instructions, userId });
+        res.status(201).json({ message: 'Recipe added successfully', recipe });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -139,8 +133,15 @@ app.put('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     const { title, ingredients, instructions } = req.body;
     try {
-        await connection.execute('UPDATE recipes SET title = ?, ingredients = ?, instructions = ? WHERE id = ?', [title, ingredients, instructions, id]);
-        res.json({ message: 'Recipe updated successfully' });
+        const recipe = await Recipe.findByPk(id);
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        recipe.title = title;
+        recipe.ingredients = ingredients;
+        recipe.instructions = instructions;
+        await recipe.save();
+        res.json({ message: 'Recipe updated successfully', recipe });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -151,7 +152,11 @@ app.put('/recipes/:id', async (req, res) => {
 app.delete('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await connection.execute('DELETE FROM recipes WHERE id = ?', [id]);
+        const recipe = await Recipe.findByPk(id);
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        await recipe.destroy();
         res.json({ message: 'Recipe deleted successfully' });
     } catch (error) {
         console.error(error);
@@ -164,19 +169,24 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
     const { id } = req.params;
     const recipeVideo = req.file;
     try {
-        await connection.execute('UPDATE recipes SET videoUrl = ? WHERE id = ?', [recipeVideo.path, id]);
-        res.json({ message: 'Recipe video uploaded successfully' });
+        const recipe = await Recipe.findByPk(id);
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        recipe.videoUrl = recipeVideo.path; // Assuming you save the file path in the database
+        await recipe.save();
+        res.json({ message: 'Recipe video uploaded successfully', recipe });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-});
 
-// For any other route, serve the 'index.html' file
+  // For any other route, serve the 'index.html' file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+});
 });
