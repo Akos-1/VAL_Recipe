@@ -5,6 +5,7 @@ const path = require('path');
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
 const sequelize = require('/root/VAL_Recipe/recipe-backend/config/database');
+const mysql = require('mysql2/promise');
 
 const app = express();
 const PORT = process.env.PORT || 5006;
