@@ -48,9 +48,16 @@ app.get('/testdb', async (req, res) => {
 app.post('/auth/register', async (req, res) => {
     const { email, password } = req.body;
     try {
+        // Create a connection pool
+        const pool = mysql.createPool(dbConfig);
+
+        // Get a connection from the pool
+        const connection = await pool.getConnection();
+
         // Check if the email already exists in the database
         const [existingUsers] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
         if (existingUsers.length > 0) {
+            connection.release(); // Release the connection
             return res.status(400).json({ message: 'User with email already exists' });
         }
 
@@ -59,6 +66,8 @@ app.post('/auth/register', async (req, res) => {
 
         // Insert the new user into the database
         const [result] = await connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
+
+        connection.release(); // Release the connection
 
         // Respond with success message
         res.status(201).json({ message: 'Registration successful!' });
