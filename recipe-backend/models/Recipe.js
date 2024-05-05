@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../../config/database'); // Adjust the path as needed
+const db = require('../../recipe-backend/config'); // Adjust the path as needed
 
 const Recipe = db.define('recipe', {
   title: {
