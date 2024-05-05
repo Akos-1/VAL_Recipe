@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Connect to the mysql database
 
 const dbConfig = {
-    host: 'localhost',
+    host: '127.0.0.1',
     user: 'val',
     password: '1',
     database: 'val'
