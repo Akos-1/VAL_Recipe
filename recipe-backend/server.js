@@ -27,17 +27,7 @@ const dbConfig = {
 // Create a connection pool
 const pool = mysql.createPool(dbConfig);
 
-// Test database connection route
-app.get('/testdb', (req, res) => {
-    pool.query('SELECT * FROM users', (error, results, fields) => {
-        if (error) {
-            console.error('Database error:', error);
-            res.status(500).json({ message: 'Database error' });
-        } else {
-            res.json({ message: 'Database connection successful', data: results });
-        }
-    });
-});
+
 
 // User registration endpoint
 app.post('/auth/register', (req, res) => {
