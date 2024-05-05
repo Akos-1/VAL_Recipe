@@ -36,7 +36,7 @@ app.post('/auth/register', async (req, res) => {
     const connection = await pool.getConnection();
 
     // Execute registration logic: Insert user with hashed password into the database
-    await connection.execute(
+    await connection.query(
       'INSERT INTO users (email, password) VALUES (?, ?)',
       [email, hashedPassword]
     );
@@ -53,6 +53,7 @@ app.post('/auth/register', async (req, res) => {
     res.status(500).json({ error: 'An error occurred during registration' });
   }
 });
+
 
 // User login endpoint
 app.post('/auth/login', async (req, res) => {
