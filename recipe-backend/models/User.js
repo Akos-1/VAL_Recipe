@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const db = require('../../recipe-backend/config'); // Adjust the path as needed
+const sequelize = require('../../config/database'); // Adjust the path as needed
 
-const User = db.define('user', {
+const User = sequelize.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
