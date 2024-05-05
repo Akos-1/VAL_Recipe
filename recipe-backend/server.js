@@ -48,12 +48,19 @@ app.get('/testdb', async (req, res) => {
 app.post('/auth/register', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const existingUser = await User.findOne({ where: { email } });
-        if (existingUser) {
-            return res.status(400).json({ message: 'user with email already exists' });
+        // Check if the email already exists in the database
+        const [existingUsers] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
+        if (existingUsers.length > 0) {
+            return res.status(400).json({ message: 'User with email already exists' });
         }
+
+        // Hash the password
         const hashedPassword = bcrypt.hashSync(password, 10);
-        await User.create({ email, password: hashedPassword });
+
+        // Insert the new user into the database
+        const [result] = await connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
+
+        // Respond with success message
         res.status(201).json({ message: 'Registration successful!' });
     } catch (error) {
         console.error(error);
@@ -65,10 +72,21 @@ app.post('/auth/register', async (req, res) => {
 app.post('/auth/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await User.findOne({ where: { email } });
-        if (!user || !bcrypt.compareSync(password, user.password)) {
+        // Check if the user with the provided email exists
+        const [users] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
+        if (users.length === 0) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+
+        const user = users[0];
+
+        // Compare the hashed password with the provided password
+        const passwordMatch = bcrypt.compareSync(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        // Respond with success message
         res.json({ message: 'Login successful!' });
     } catch (error) {
         console.error(error);
@@ -88,19 +106,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
 // Recipe search endpoint
 app.get('/recipes/search', async (req, res) => {
     const searchQuery = req.query.search || '';
     try {
-        const recipes = await Recipe.findAll({
-            where: {
-                [Sequelize.Op.or]: [
-                    { title: { [Sequelize.Op.like]: `%${searchQuery}%` } },
-                    { ingredients: { [Sequelize.Op.like]: `%${searchQuery}%` } },
-                    { instructions: { [Sequelize.Op.like]: `%${searchQuery}%` } }
-                ]
-            }
-        });
+        const [recipes] = await connection.execute('SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ? OR instructions LIKE ?', [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
         res.json({ recipes });
     } catch (error) {
         console.error(error);
@@ -112,8 +123,8 @@ app.get('/recipes/search', async (req, res) => {
 app.post('/recipes/add', async (req, res) => {
     const { title, ingredients, instructions, userId } = req.body;
     try {
-        const recipe = await Recipe.create({ title, ingredients, instructions, userId });
-        res.status(201).json({ message: 'Recipe added successfully', recipe });
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, userId) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userId]);
+        res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -125,15 +136,8 @@ app.put('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     const { title, ingredients, instructions } = req.body;
     try {
-        const recipe = await Recipe.findByPk(id);
-        if (!recipe) {
-            return res.status(404).json({ message: 'Recipe not found' });
-        }
-        recipe.title = title;
-        recipe.ingredients = ingredients;
-        recipe.instructions = instructions;
-        await recipe.save();
-        res.json({ message: 'Recipe updated successfully', recipe });
+        await connection.execute('UPDATE recipes SET title = ?, ingredients = ?, instructions = ? WHERE id = ?', [title, ingredients, instructions, id]);
+        res.json({ message: 'Recipe updated successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -144,11 +148,7 @@ app.put('/recipes/:id', async (req, res) => {
 app.delete('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const recipe = await Recipe.findByPk(id);
-        if (!recipe) {
-            return res.status(404).json({ message: 'Recipe not found' });
-        }
-        await recipe.destroy();
+        await connection.execute('DELETE FROM recipes WHERE id = ?', [id]);
         res.json({ message: 'Recipe deleted successfully' });
     } catch (error) {
         console.error(error);
@@ -161,13 +161,8 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
     const { id } = req.params;
     const recipeVideo = req.file;
     try {
-        const recipe = await Recipe.findByPk(id);
-        if (!recipe) {
-            return res.status(404).json({ message: 'Recipe not found' });
-        }
-        recipe.videoUrl = recipeVideo.path; // Assuming you save the file path in the database
-        await recipe.save();
-        res.json({ message: 'Recipe video uploaded successfully', recipe });
+        await connection.execute('UPDATE recipes SET videoUrl = ? WHERE id = ?', [recipeVideo.path, id]);
+        res.json({ message: 'Recipe video uploaded successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -176,9 +171,9 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
 
 // For any other route, serve the 'index.html' file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT});
+    console.log(`Server is running on port ${PORT}`);
 });
