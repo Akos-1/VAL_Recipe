@@ -1,19 +1,16 @@
-const sequelize = require('./config/database');
-const mysql = require('mysql2/promise');
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
+const sequelize = require('./config/database'); // Import Sequelize instance
 
 const app = express();
 const PORT = process.env.PORT || 5006;
 
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname, '')));
-
 app.use(bodyParser.json());
 
 // Connect to the database using Sequelize
