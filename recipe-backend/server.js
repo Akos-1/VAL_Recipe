@@ -16,6 +16,16 @@ app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
 
+// Connect to the database using Sequelize
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
 // Connect to the mysql database
 
 const dbConfig = {
@@ -43,17 +53,6 @@ app.get('/testdb', async (req, res) => {
         res.status(500).json({ message: 'Database error' });
     }
 });
-
-
-// Connect to the database using Sequelize
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection to the database has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
 
 
 // User registration endpoint
