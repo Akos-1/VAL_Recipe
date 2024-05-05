@@ -24,49 +24,31 @@ const dbConfig = {
     database: 'val'
 };
 
-// Create a connection pool
-const pool = mysql.createPool(dbConfig);
+// Registration endpoint
+app.post('/register', async (req, res) => {
+  const { email, password } = req.body;
 
+  // Create a connection to the database
+  try {
+    const connection = await mysql.createConnection(dbConfig);
 
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-// User registration endpoint
-app.post('/auth/register', (req, res) => {
-    const { email, password } = req.body;
-    pool.getConnection((error, connection) => {
-        if (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Internal server error' });
-            return;
-        }
+    // Insert user into the database
+    const [result] = await connection.execute(
+      'INSERT INTO users (email, password) VALUES (?, ?)',
+      [email, hashedPassword]
+    );
 
-        connection.execute('SELECT * FROM users WHERE email = ?', [email], (error, existingUsers) => {
-            if (error) {
-                connection.release();
-                console.error(error);
-                res.status(500).json({ message: 'Internal server error' });
-                return;
-            }
+    // Close the connection
+    await connection.end();
 
-            if (existingUsers.length > 0) {
-                connection.release();
-                res.status(400).json({ message: 'User with email already exists' });
-                return;
-            }
-
-            const hashedPassword = bcrypt.hashSync(password, 10);
-
-            connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword], (error, result) => {
-                connection.release();
-                if (error) {
-                    console.error(error);
-                    res.status(500).json({ message: 'Internal server error' });
-                    return;
-                }
-
-                res.status(201).json({ message: 'Registration successful!' });
-            });
-        });
-    });
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // User login endpoint
