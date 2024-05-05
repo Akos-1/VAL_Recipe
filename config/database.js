@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 // Initialize Sequelize with SQLite dialect
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
+  dialect: 'mysql',
   storage: './recipes.db' // Path to your SQLite database file
 });
 
