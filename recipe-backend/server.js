@@ -24,6 +24,17 @@ const dbConfig = {
     database: 'val'
 };
 
+console.log(`Connecting to database: ${dbConfig.host}:${dbConfig.port}`);
+
+const db = mysql.createConnection(dbConfig);
+
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+  } else {
+    console.log('Connected to database!');
+  }
+});
 // Registration endpoint
 app.post('/auth/register', async (req, res) => {
   const { email, password } = req.body;
