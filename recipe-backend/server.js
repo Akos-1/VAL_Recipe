@@ -45,12 +45,11 @@ app.get('/testdb', async (req, res) => {
 
 
 // User registration endpoint
+// Create a connection pool
+        const pool = mysql.createPool(dbConfig);
 app.post('/auth/register', async (req, res) => {
     const { email, password } = req.body;
     try {
-        // Create a connection pool
-        const pool = mysql.createPool(dbConfig);
-
         // Get a connection from the pool
         const connection = await pool.getConnection();
 
