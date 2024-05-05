@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const sequelize = require('./config/database');
 const mysql = require('mysql2/promise');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -43,6 +43,17 @@ app.get('/testdb', async (req, res) => {
         res.status(500).json({ message: 'Database error' });
     }
 });
+
+
+// Connect to the database using Sequelize
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
 // User registration endpoint
