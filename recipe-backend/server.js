@@ -24,18 +24,24 @@ const dbConfig = {
     database: 'val'
 };
 
-const db = mysql.createPool(dbConfig);
+// Create a connection pool
+const pool = mysql.createPool(dbConfig);
 
-db.getConnection((err, connection) => {
-    if (err) {
-        console.error('Error connecting to database:', err);
-        return;
+// Test database connection route
+app.get('/testdb', async (req, res) => {
+    try {
+        // Get a connection from the pool
+        const connection = await pool.getConnection();
+        // Execute a query
+        const [rows, fields] = await connection.query('SELECT * FROM users');
+        // Release the connection
+        connection.release();
+        res.json({ message: 'Database connection successful', data: rows });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ message: 'Database error' });
     }
-    console.log('Connected to the MySQL database.');
-    connection.release();
 });
-
-module.exports = db; 
 
 
 // User registration endpoint
