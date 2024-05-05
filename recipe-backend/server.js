@@ -121,7 +121,6 @@ const upload = multer({ storage: storage });
 app.get('/recipes/search', async (req, res) => {
     const searchQuery = req.query.search || '';
     try {
-        try {
         // Get a connection from the pool
         connection = await pool.getConnection();
         const [recipes] = await connection.execute('SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ? OR instructions LIKE ?', [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
