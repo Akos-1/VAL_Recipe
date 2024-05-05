@@ -43,14 +43,14 @@ app.get('/testdb', async (req, res) => {
     }
 });
 
+let connection;
 
 // User registration endpoint
-// Create a connection pool
 app.post('/auth/register', async (req, res) => {
     const { email, password } = req.body;
     try {
         // Get a connection from the pool
-        const connection = await pool.getConnection();
+        connection = await pool.getConnection();
 
         // Check if the email already exists in the database
         const [existingUsers] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
@@ -79,6 +79,9 @@ app.post('/auth/register', async (req, res) => {
 app.post('/auth/login', async (req, res) => {
     const { email, password } = req.body;
     try {
+        // Get a connection from the pool
+        connection = await pool.getConnection();
+        
         // Check if the user with the provided email exists
         const [users] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
         if (users.length === 0) {
