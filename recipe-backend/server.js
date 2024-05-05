@@ -24,15 +24,13 @@ const dbConfig = {
     database: 'val'
 };
 
-const db = mysql.createPool(dbConfig);
+console.log(`Connecting to database: ${dbConfig.host}:${dbConfig.port}`);
 
-db.query('SELECT * FROM your_table')
-  .then((results) => {
-    console.log(results);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+mysql.createPool(dbConfig).then((pool) => {
+  console.log('Connected to database!');
+}).catch((err) => {
+  console.error('Error connecting to database:', err);
+});
 
 // Registration endpoint
 app.post('/auth/register', async (req, res) => {
