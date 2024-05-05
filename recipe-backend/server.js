@@ -25,7 +25,7 @@ const dbConfig = {
 };
 
 // Registration endpoint
-app.post('/register', async (req, res) => {
+app.post('/auth/register', async (req, res) => {
   const { email, password } = req.body;
 
   // Create a connection to the database
