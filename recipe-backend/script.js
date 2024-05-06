@@ -13,11 +13,11 @@ function togglePopup(popupId) {
 document.addEventListener('DOMContentLoaded', function() {
     // Add event listener to the "Register here" link
     document.getElementById('register-link').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        toggleRegisterForm(); // Toggle the registration form visibility
+        event.preventDefault();
+        toggleRegisterForm(); 
     });
 
-    // Add event listener to the register form for submission
+    //event listener to the register form for submission
     document.getElementById('register-form').addEventListener('submit', registerUser);
 });
 
@@ -57,7 +57,6 @@ async function registerUser(event) {
             throw new Error('Registration failed');
         }
         alert('Registration successful!');
-        // Optionally, redirect to login page after successful registration
     } catch (error) {
         console.error(error);
     }
