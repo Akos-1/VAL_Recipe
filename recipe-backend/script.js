@@ -75,11 +75,10 @@ function registerUser(event) {
 }
 
 
-// Function to log in an existing user
 async function loginUser(event) {
     event.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+    const email = document.getElementById('login-email').value; // Remove #
+    const password = document.getElementById('login-password').value; // Remove #
     try {
         const response = await fetch('/auth/login', {
             method: 'POST',
@@ -97,6 +96,7 @@ async function loginUser(event) {
         console.error(error);
     }
 }
+
 
 // Function to fetch recipes based on search query
 async function searchRecipes(event) {
