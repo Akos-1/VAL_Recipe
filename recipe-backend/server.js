@@ -67,8 +67,11 @@ app.post('/auth/register', async (req, res) => {
 
         connection.release(); // Release the connection
 
-        // Respond with success message
-        res.status(201).json({ message: 'Registration successful!' });
+        // Generate dynamic dashboard URL using email
+        const dashboardUrl = `/dashboard/${encodeURIComponent(email)}`;
+
+        // Respond with success message and dashboard URL
+        res.status(201).json({ message: 'Registration successful!', dashboardUrl });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -96,8 +99,11 @@ app.post('/auth/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Respond with success message
-        res.json({ message: 'Login successful!' });
+        // Generate dynamic dashboard URL using email
+        const dashboardUrl = `/dashboard/${encodeURIComponent(email)}`;
+
+        // Respond with success message and dashboard URL
+        res.json({ message: 'Login successful!', dashboardUrl });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -108,7 +114,6 @@ app.post('/auth/login', async (req, res) => {
         }
     }
 });
-
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
