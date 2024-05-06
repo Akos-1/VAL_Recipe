@@ -77,8 +77,8 @@ function registerUser(event) {
 
 async function loginUser(event) {
     event.preventDefault();
-    const email = document.getElementById('login-email').value; // Remove #
-    const password = document.getElementById('login-password').value; // Remove #
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
     try {
         const response = await fetch('/auth/login', {
             method: 'POST',
