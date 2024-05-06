@@ -78,8 +78,8 @@ function registerUser(event) {
 // Function to log in an existing user
 async function loginUser(event) {
     event.preventDefault();
-    const email = document.getElementById('#login-email').value;
-    const password = document.getElementById('#login-password').value;
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
     try {
         const response = await fetch('/auth/login', {
             method: 'POST',
