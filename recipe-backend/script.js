@@ -88,14 +88,20 @@ async function loginUser(event) {
             body: JSON.stringify({ email, password })
         });
         if (!response.ok) {
-            throw new Error('Login failed');
+            if (response.status === 401) {
+                alert('Invalid email or password');
+            } else {
+                throw new Error('Login failed');
+            }
+        } else {
+            alert('Login successful!');
+            // Optionally, redirect to dashboard after successful login
         }
-        alert('Login successful!');
-        // Optionally, redirect to dashboard after successful login
     } catch (error) {
         console.error(error);
     }
 }
+
 
 
 // Function to fetch recipes based on search query
