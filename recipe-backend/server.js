@@ -109,6 +109,7 @@ app.post('/auth/login', async (req, res) => {
     }
 });
 
+
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
