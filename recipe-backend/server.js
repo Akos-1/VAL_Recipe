@@ -101,9 +101,13 @@ app.post('/auth/login', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
+    } finally {
+        // Release the connection back to the pool
+        if (connection) {
+            connection.release();
+        }
     }
 });
-
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
