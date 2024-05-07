@@ -81,7 +81,7 @@ async function editRecipe(id) {
     const newInstructions = prompt('Enter new instructions for the recipe:');
     if (newInstructions === null) return; // User canceled
     try {
-        const response = await fetch(`/recipes/${id}`, {
+        const response = await fetch(`/api/recipes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,26 +92,25 @@ async function editRecipe(id) {
             throw new Error('Failed to update recipe');
         }
         alert('Recipe updated successfully!');
-        searchRecipes(event); // Refresh recipe list
+        populateDashboard(); // Refresh dashboard with updated recipe list
     } catch (error) {
         console.error(error);
     }
 }
 
-
 // Function to handle deleting a recipe
 async function deleteRecipe(recipeId) {
-     const confirmation = confirm('Are you sure you want to delete this recipe?');
+    const confirmation = confirm('Are you sure you want to delete this recipe?');
     if (!confirmation) return;
     try {
-        const response = await fetch(`/recipes/${id}`, {
+        const response = await fetch(`/api/recipes/${recipeId}`, {
             method: 'DELETE'
         });
         if (!response.ok) {
             throw new Error('Failed to delete recipe');
         }
         alert('Recipe deleted successfully!');
-        searchRecipes(event); // Refresh recipe list
+        populateDashboard(); // Refresh dashboard with updated recipe list
     } catch (error) {
         console.error(error);
     }
