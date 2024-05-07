@@ -116,8 +116,6 @@ app.post('/auth/login', async (req, res) => {
 });
 
 
-const path = require('path');
-
 // Serve the dashboard.html page for the dashboard URL
 app.get('/dashboard/:email', (req, res) => {
     const email = req.params.email;
