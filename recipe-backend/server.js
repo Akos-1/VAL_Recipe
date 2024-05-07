@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 // Add session middleware
 app.use(session({
-    secret: val,
+    secret: 'val',
     resave: false,
     saveUninitialized: false
 }));
