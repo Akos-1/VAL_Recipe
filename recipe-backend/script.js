@@ -108,7 +108,13 @@ async function loginUser(event) {
 // Function to fetch recipes based on search query
 async function searchRecipes(event) {
     event.preventDefault();
-    const searchQuery = document.getElementById('search').value;
+    // Get the search input value
+    const searchInput = document.getElementById('search');
+    if (!searchInput) {
+        console.error('Search input element not found');
+        return;
+    }
+    const searchQuery = searchInput.value;
     try {
         const response = await fetch(`/recipes/search?search=${searchQuery}`);
         if (!response.ok) {
@@ -121,6 +127,25 @@ async function searchRecipes(event) {
     }
 }
 
+// Function to display recipes on the page
+function displayRecipes(recipes) {
+    const recipeContainer = document.getElementById('recipe-list');
+    // Clear previous recipe listings
+    recipeContainer.innerHTML = '';
+
+    recipes.forEach(recipe => {
+        // Create HTML elements for each recipe
+        const recipeDiv = document.createElement('div');
+        recipeDiv.classList.add('recipe-item');
+        recipeDiv.innerHTML = `
+            <h3>${recipe.title}</h3>
+            <p>Ingredients: ${recipe.ingredients}</p>
+            <p>Instructions: ${recipe.instructions}</p>
+        `;
+        // Append the recipe element to the container
+        recipeContainer.appendChild(recipeDiv);
+    });
+}
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
