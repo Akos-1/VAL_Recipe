@@ -116,12 +116,7 @@ async function searchRecipes(event) {
     }
     const searchQuery = searchInput.value;
     try {
-        const response = await fetch(`/recipes/search?search=${searchQuery}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch recipes');
-        }
-        const data = await response.json();
-        displayRecipes(data.recipes);
+        // Your fetch request here
     } catch (error) {
         console.error(error);
     }
@@ -129,23 +124,22 @@ async function searchRecipes(event) {
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
+    // Get the container element where recipes will be displayed
     const recipeContainer = document.getElementById('recipe-list');
-    // Clear previous recipe listings
+    if (!recipeContainer) {
+        console.error('Recipe container element not found');
+        return;
+    }
+    // Clear previous content
     recipeContainer.innerHTML = '';
-
+    // Loop through recipes and display them
     recipes.forEach(recipe => {
-        // Create HTML elements for each recipe
         const recipeDiv = document.createElement('div');
-        recipeDiv.classList.add('recipe-item');
-        recipeDiv.innerHTML = `
-            <h3>${recipe.title}</h3>
-            <p>Ingredients: ${recipe.ingredients}</p>
-            <p>Instructions: ${recipe.instructions}</p>
-        `;
-        // Append the recipe element to the container
+        recipeDiv.textContent = recipe.title; // Example: Display recipe title
         recipeContainer.appendChild(recipeDiv);
     });
 }
+
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
