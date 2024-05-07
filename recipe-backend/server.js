@@ -191,6 +191,75 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
     }
 });
 
+
+// Endpoint to fetch user-specific data for the dashboard
+app.get('/api/dashboard/:email', async (req, res) => {
+    const { email } = req.params;
+    try {
+        // Get user profile information
+        const [user] = await connection.execute('SELECT id, email FROM users WHERE email = ?', [email]);
+        if (user.length === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const userId = user[0].id;
+
+        // Fetch recent activity for the user
+        const [activity] = await connection.execute('SELECT * FROM activity WHERE user_id = ? ORDER BY created_at DESC LIMIT 10', [userId]);
+
+        // Fetch user's recipes
+        const [recipes] = await connection.execute('SELECT * FROM recipes WHERE userId = ?', [userId]);
+
+        // Combine all fetched data and respond
+        const dashboardData = {
+            user: user[0],
+            activity,
+            recipes
+        };
+        res.json(dashboardData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Endpoint to handle adding a new recipe
+app.post('/api/recipes/add', async (req, res) => {
+    const { title, ingredients, instructions, userId } = req.body;
+    try {
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, userId) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userId]);
+        res.status(201).json({ message: 'Recipe added successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Endpoint to handle updating a recipe
+app.put('/api/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, ingredients, instructions } = req.body;
+    try {
+        await connection.execute('UPDATE recipes SET title = ?, ingredients = ?, instructions = ? WHERE id = ?', [title, ingredients, instructions, id]);
+        res.json({ message: 'Recipe updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Endpoint to handle deleting a recipe
+app.delete('/api/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await connection.execute('DELETE FROM recipes WHERE id = ?', [id]);
+        res.json({ message: 'Recipe deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 // For any other route, serve the 'index.html' file
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
