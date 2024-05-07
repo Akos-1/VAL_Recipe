@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>VAL's Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
-<body>
+
+<body>	
     <header>
-        <h1>User Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#activity">Activity</a></li>
-                <li><a href="#recipes">Recipes</a></li>
-                <li><a href="#settings">Settings</a></li>
-            </ul>
-        </nav>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Logo">
+        </div>
+        <div class="top-right">
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="#">About Us</a>
+                <a href="#" onclick="togglePopup('login-form-container')">Log In</a>
+                <div class="recipes-dropdown">
+                    <span class="recipes-label">Recipes</span>
+                    <ul class="recipes-menu">
+                        <li><a href="#">Ghana</a></li>
+                        <li><a href="#">Nigeria</a></li>
+                        <li><a href="#">Senegal</a></li>
+                        <li><a href="#">Ivory Coast</a></li>
+                    </ul>
+                </div>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="search">
+                <!-- Add your search form here -->
+                <form action="#" method="get" onsubmit="searchRecipes(event)">
+                    <input type="text" name="search" placeholder="Search Recipe...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     </header>
+
+    <h1>User Dashboard</h1>
+    <nav>
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#activity">Activity</a></li>
+            <li><a href="#recipes">Recipes</a></li>
+            <li><a href="#settings">Settings</a></li>
+        </ul>
+    </nav>
+
     <main>
         <section id="profile">
             <h2>User Profile</h2>
             <div id="profile-info">
-                <!-- Placeholder for user profile information -->
+                <h3>Profile Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Location:</strong> New York, USA</p>
+                <!-- Add more profile information as needed -->
             </div>
         </section>
         <section id="activity">
             <h2>Recent Activity</h2>
             <div id="activity-summary">
-                <!-- Placeholder for recent activity summary -->
+                <p>No recent activity.</p>
             </div>
         </section>
         <section id="recipes">
             <h2>Recipes</h2>
             <div id="recipe-list">
-                <!-- Placeholder for user's recipes -->
+                <p>No recipes available.</p>
             </div>
             <form id="add-recipe-form">
                 <!-- Form for adding a recipe -->
@@ -46,9 +83,11 @@
         </section>
         <section id="settings">
             <h2>Settings</h2>
-            <!-- Placeholder for user settings/options -->
+            <p>No settings available.</p>
         </section>
     </main>
+
     <script src="dashboard.js"></script>
 </body>
+
 </html>
