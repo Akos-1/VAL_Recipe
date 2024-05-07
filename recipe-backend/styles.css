@@ -299,4 +299,145 @@ header {
     .search button {
         padding: 8px 8px;
     }
+
+    /* User Dashboard Title */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
 }
+
+/* Dashboard Navigation */
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+/* Profile Section */
+#profile {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#profile h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#profile-info {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#profile-info h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#profile-info p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Recent Activity Section */
+#activity {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#activity h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#activity-summary {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#activity-summary p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Recipes Section */
+#recipes {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#recipes h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#recipe-list {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#recipe-list p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#add-recipe-form {
+    margin-top: 20px;
+}
+
+/* Settings Section */
+#settings {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#settings h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+}
+
