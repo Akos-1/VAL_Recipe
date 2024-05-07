@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session'); // Add this line
 const User = require('./models/User');
 const Recipe = require('./models/Recipe');
 
@@ -16,6 +17,13 @@ const PORT = process.env.PORT || 5006;
 app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
+
+// Add session middleware
+app.use(session({
+    secret: val,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Connect to the mysql database
 
