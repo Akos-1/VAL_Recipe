@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAL's Recipes</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <!-- overlay right after the opening body tag to blur page -->
-    <div class="overlay" id="overlay"></div>
 	
     <header>
         <div class="logo">
@@ -43,6 +41,54 @@
         </div>
     </header>
 
+    <h1>User Dashboard</h1>
+    <nav>
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#activity">Activity</a></li>
+            <li><a href="#recipes">Recipes</a></li>
+            <li><a href="#settings">Settings</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="profile">
+            <h2>User Profile</h2>
+            <div id="profile-info">
+                <h3>Profile Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Location:</strong> New York, USA</p>
+                <!-- Add more profile information as needed -->
+            </div>
+        </section>
+        <section id="activity">
+            <h2>Recent Activity</h2>
+            <div id="activity-summary">
+                <p>No recent activity.</p>
+            </div>
+        </section>
+        <section id="recipes">
+            <h2>Recipes</h2>
+            <div id="recipe-list">
+                <p>No recipes available.</p>
+            </div>
+            <form id="add-recipe-form">
+                <!-- Form for adding a recipe -->
+                <input type="text" id="recipe-title" placeholder="Recipe Title">
+                <textarea id="recipe-instructions" placeholder="Recipe Instructions"></textarea>
+                <input type="file" id="recipe-image" accept="image/*" placeholder="Recipe Image">
+                <input type="file" id="recipe-video" accept="video/*" placeholder="Recipe Video">
+                <input type="submit" value="Add Recipe" onclick="addRecipe(event)">
+            </form>
+        </section>
+        <section id="settings">
+            <h2>Settings</h2>
+            <p>No settings available.</p>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
     
     <div class="banner-space">
     </div>
