@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="dashboard.js" defer></script>
 </head>
-
 <body>
     <header>
         <h1>User Dashboard</h1>
-        <button id="logoutBtn">Logout</button>
-    </header>
-
-    <div class="container">
-        <div class="sidebar">
-            <h2>Menu</h2>
+        <nav>
             <ul>
-                <li><a href="#" id="addRecipeLink">Add Recipe</a></li>
-                <li><a href="#" id="editRecipeLink">Edit Recipe</a></li>
-                <li><a href="#" id="deleteRecipeLink">Delete Recipe</a></li>
-                <li><a href="#" id="uploadMediaLink">Upload Media</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#activity">Activity</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#settings">Settings</a></li>
             </ul>
-        </div>
-
-        <div class="main-content">
-            <!-- Content will be loaded dynamically here -->
-        </div>
-    </div>
+        </nav>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>User Profile</h2>
+            <div id="profile-info">
+                <!-- Placeholder for user profile information -->
+            </div>
+        </section>
+        <section id="activity">
+            <h2>Recent Activity</h2>
+            <div id="activity-summary">
+                <!-- Placeholder for recent activity summary -->
+            </div>
+        </section>
+        <section id="recipes">
+            <h2>Recipes</h2>
+            <div id="recipe-list">
+                <!-- Placeholder for user's recipes -->
+            </div>
+            <form id="add-recipe-form">
+                <!-- Form for adding a recipe -->
+                <input type="text" id="recipe-title" placeholder="Recipe Title">
+                <textarea id="recipe-instructions" placeholder="Recipe Instructions"></textarea>
+                <input type="file" id="recipe-image" accept="image/*" placeholder="Recipe Image">
+                <input type="file" id="recipe-video" accept="video/*" placeholder="Recipe Video">
+                <button type="submit">Add Recipe</button>
+            </form>
+        </section>
+        <section id="settings">
+            <h2>Settings</h2>
+            <!-- Placeholder for user settings/options -->
+        </section>
+    </main>
+    <script src="dashboard.js"></script> <!-- Include dashboard logic -->
 </body>
-
 </html>
