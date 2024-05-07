@@ -1,3 +1,19 @@
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+app.get('/dashboard', isAuthenticated, (req, res) => {
+    res.render('dashboard', { user: req.user });
+});
+
+// Other routes that require authentication will be added...
+
+
+
+
 // Function to fetch user-specific data and populate the dashboard
 async function populateDashboard() {
     try {
