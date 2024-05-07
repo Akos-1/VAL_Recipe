@@ -89,19 +89,19 @@ async function loginUser(event) {
         });
         if (!response.ok) {
             throw new Error('Login failed');
+        }
+        const responseData = await response.json();
+        if (responseData.dashboardUrl) {
+            // Redirect to user's dashboard
+            window.location.href = responseData.dashboardUrl;
         } else {
-            const responseData = await response.json();
-            if (responseData.dashboardUrl) {
-                // Redirect to user's dashboard
-                window.location.href = responseData.dashboardUrl;
-            } else {
-                alert('Dashboard URL not found');
-            }
+            alert('Dashboard URL not found');
         }
     } catch (error) {
         console.error(error);
     }
 }
+
 
 
 
