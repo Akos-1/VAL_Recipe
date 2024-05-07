@@ -1,19 +1,3 @@
-function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
-
-app.get('/dashboard', isAuthenticated, (req, res) => {
-    res.render('dashboard', { user: req.user });
-});
-
-// Other routes that require authentication will be added...
-
-
-
-
 // Function to fetch user-specific data and populate the dashboard
 async function populateDashboard() {
     try {
@@ -61,7 +45,7 @@ async function populateDashboard() {
     }
 }
 
-// Function to handle adding a recipe
+ // Function to handle adding a recipe
 async function addRecipe(event) {
     event.preventDefault();
     const title = document.getElementById('recipe-title').value;
@@ -74,7 +58,7 @@ async function addRecipe(event) {
         formData.append('instructions', instructions);
         formData.append('image', imageFile);
         formData.append('video', videoFile);
-        const response = await fetch('/api/recipes', {
+        const response = await fetch('/api/recipes/add', {
             method: 'POST',
             body: formData
         });
@@ -87,6 +71,7 @@ async function addRecipe(event) {
         console.error('Error adding recipe:', error);
     }
 }
+
 
 // Function to handle editing a recipe
 async function editRecipe(id) {
