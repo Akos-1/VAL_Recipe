@@ -41,7 +41,7 @@
                 <textarea id="recipe-instructions" placeholder="Recipe Instructions"></textarea>
                 <input type="file" id="recipe-image" accept="image/*" placeholder="Recipe Image">
                 <input type="file" id="recipe-video" accept="video/*" placeholder="Recipe Video">
-                <button type="submit">Add Recipe</button>
+                <input type="submit" value="Add Recipe" onclick="addRecipe(event)">
             </form>
         </section>
         <section id="settings">
@@ -49,6 +49,6 @@
             <!-- Placeholder for user settings/options -->
         </section>
     </main>
-    <script src="dashboard.js"></script> <!-- Include dashboard logic -->
+    <script src="dashboard.js"></script>
 </body>
 </html>
