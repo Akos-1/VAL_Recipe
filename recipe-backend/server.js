@@ -115,6 +115,17 @@ app.post('/auth/login', async (req, res) => {
     }
 });
 
+
+const path = require('path');
+
+// Serve the dashboard.html page for the dashboard URL
+app.get('/dashboard/:email', (req, res) => {
+    const email = req.params.email;
+    // Serve the dashboard.html file
+    res.sendFile(path.join(__dirname, 'VAL_Recipe', 'recipe-backend', 'dashboard.html'));
+});
+
+
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
