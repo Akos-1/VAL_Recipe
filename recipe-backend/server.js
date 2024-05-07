@@ -150,13 +150,12 @@ app.get('/recipes/search', async (req, res) => {
     }
 });
 
-// Add a new recipe
 app.post('/recipes/add', async (req, res) => {
     const { title, ingredients, instructions } = req.body;
-    const userId = req.user.id; // Assuming you have middleware to populate req.user with user information
 
     try {
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, userId) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userId]);
+        // Insert the new recipe into the database without associating it with a specific user
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions) VALUES (?, ?, ?)', [title, ingredients, instructions]);
         res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
         console.error(error);
