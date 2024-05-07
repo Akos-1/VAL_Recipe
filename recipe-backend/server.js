@@ -234,17 +234,20 @@ app.get('/api/dashboard/:email', async (req, res) => {
     }
 });
 
-// Endpoint to handle adding a new recipe
-app.post('/api/recipes/add', async (req, res) => {
-    const { title, ingredients, instructions, userId } = req.body;
+// Add a new recipe
+app.post('/recipes/add', async (req, res) => {
+    const { title, ingredients, instructions } = req.body;
+
     try {
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, userId) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userId]);
+        // Insert the new recipe into the database without associating it with a specific user
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions) VALUES (?, ?, ?)', [title, ingredients, instructions]);
         res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 // Endpoint to handle updating a recipe
 app.put('/api/recipes/:id', async (req, res) => {
