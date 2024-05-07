@@ -88,14 +88,15 @@ async function loginUser(event) {
             body: JSON.stringify({ email, password })
         });
         if (!response.ok) {
-            if (response.status === 401) {
-                alert('Invalid email or password');
-            } else {
-                throw new Error('Login failed');
-            }
+            throw new Error('Login failed');
         } else {
-            alert('Login successful!');
-            // Optionally, redirect to dashboard after successful login
+            const responseData = await response.json();
+            if (responseData.dashboardUrl) {
+                // Redirect to user's dashboard
+                window.location.href = responseData.dashboardUrl;
+            } else {
+                alert('Dashboard URL not found');
+            }
         }
     } catch (error) {
         console.error(error);
