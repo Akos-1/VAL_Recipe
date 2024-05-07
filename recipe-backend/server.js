@@ -120,7 +120,7 @@ app.post('/auth/login', async (req, res) => {
 app.get('/dashboard/:email', (req, res) => {
     const email = req.params.email;
     // Serve the dashboard.html file
-    res.sendFile(path.join(__dirname, 'VAL_Recipe', 'recipe-backend', 'dashboard.html'));
+    res.sendFile(path.join(__dirname, 'dashboard.html'));
 });
 
 
