@@ -108,7 +108,7 @@ async function loginUser(event) {
 // Function to fetch recipes based on search query
 async function searchRecipes(event) {
     event.preventDefault();
-    const searchQuery = document.querySelector('input[name="search"]').value;
+    const searchQuery = document.getElementById('search').value;
     try {
         const response = await fetch(`/recipes/search?search=${searchQuery}`);
         if (!response.ok) {
@@ -120,6 +120,7 @@ async function searchRecipes(event) {
         console.error(error);
     }
 }
+
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
