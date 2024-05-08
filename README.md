@@ -13,9 +13,10 @@ Journey Through West Africa: Explore and appreciate the rich culinary heritage o
 
 Technologies Used
 Backend:
-Flask (Python web framework)
-Flask-SQLAlchemy (Database ORM)
-SQLite (Database for simplicity)
+Express.js (Node.js web framework)
+Sequelize (ORM for Node.js)
+MySQL (Database)
+
 
 Frontend:
 HTML, CSS
