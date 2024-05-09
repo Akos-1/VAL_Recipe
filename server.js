@@ -10,8 +10,7 @@ const Recipe = require('./models/Recipe');
 const app = express();
 const PORT = process.env.PORT || 5006;
 
-// Serve static files from the root directory
-app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(path.join(__dirname, 'Templates')));
 
 app.use(bodyParser.json());
 
