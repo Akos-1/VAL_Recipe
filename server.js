@@ -10,8 +10,7 @@ const Recipe = require('./models/Recipe');
 const app = express();
 const PORT = process.env.PORT || 5006;
 
-// Serve static files from the root directory
-app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(path.join(__dirname, 'Templates')));
 
 app.use(bodyParser.json());
 
@@ -65,7 +64,6 @@ const createTables = async () => {
             videoUrl VARCHAR(255)
         )`);
         connection.release();
-        console.log("Database tables created successfully");
     } catch (error) {
         console.error("Error creating database tables:", error);
     }
@@ -242,10 +240,6 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
     }
 });
 
-// For any other route, serve the 'index.html' file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Templates', 'index.html'));
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
