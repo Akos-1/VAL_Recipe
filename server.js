@@ -244,7 +244,7 @@ app.post('/recipes/:id/upload', upload.single('recipeVideo'), async (req, res) =
 
 // For any other route, serve the 'index.html' file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'Templates', 'index.html'));
 });
 
 app.listen(PORT, () => {
