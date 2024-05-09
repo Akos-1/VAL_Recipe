@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5006;
 
 // Serve static files from the root directory
-app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(path.join(__dirname, 'Templates', '')));
 
 app.use(bodyParser.json());
 
@@ -149,7 +149,7 @@ app.post('/auth/login', async (req, res) => {
 app.get('/dashboard/:email', (req, res) => {
     const email = req.params.email;
     // Serve the dashboard.html file
-    res.sendFile(path.join(__dirname, 'dashboard.html'));
+    res.sendFile(path.join(__dirname, 'Templates', 'index.html'));
 });
 
 // Multer configuration for file uploads
