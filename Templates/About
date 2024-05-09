@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - VAL Recipe App</title>
+    <style>
+        /* Add CSS styles for better presentation */
+        .about-us {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        .about-us h2 {
+            color: #333;
+        }
+        .about-us p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-us">
+        <h2>About Us - VAL Recipe App</h2>
+        <p>Welcome to VAL Recipe App! Journey Through West African Culinary Wonders.</p>
+        <h3>Our Mission</h3>
+        <p>To make cooking delicious and nutritious West African Meals easy and accessible for everyone.</p>
+        <h3>Key Features</h3>
+        <ul>
+            <li>Vast recipe database</li>
+            <li>Meal planning tools</li>
+            <li>Nutritional information</li>
+            <li>User-friendly interface</li>
+        </ul>
+        <h3>Meet Our Team</h3>
+        <ul>
+            <li>Lebene - Tech Enthusiast</li>
+            <li>Afya - Veterinarian</li>
+            <li>Veronica - Quality Contro Scientist</li>
+        </ul>
+        <h3>Our Story</h3>
+        <p>Our journey began with a passion for food and a desire to share delicious recipes in West Africa countries with the world.</p>
+        <h3>Our Values</h3>
+        <p>We are committed to promoting healthy eating, supporting local producers, and reducing food waste.</p>
+    </div>
+</body>
+</html>
