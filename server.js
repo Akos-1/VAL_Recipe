@@ -149,7 +149,7 @@ app.post('/auth/login', async (req, res) => {
 app.get('/dashboard/:email', (req, res) => {
     const email = req.params.email;
     // Serve the dashboard.html file
-    res.sendFile(path.join(__dirname, 'Templates', 'index.html'));
+    res.sendFile(path.join(__dirname, 'Templates', 'dashboard.html'));
 });
 
 // Multer configuration for file uploads
