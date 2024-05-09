@@ -46,6 +46,35 @@ app.get('/testdb', async (req, res) => {
     }
 });
 
+// Define the database schema
+const createTables = async () => {
+    try {
+        const connection = await pool.getConnection();
+        // Create users table
+        await connection.execute(`CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL
+        )`);
+        // Create recipes table
+        await connection.execute(`CREATE TABLE IF NOT EXISTS recipes (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            ingredients TEXT,
+            instructions TEXT,
+            videoUrl VARCHAR(255)
+        )`);
+        connection.release();
+        console.log("Database tables created successfully");
+    } catch (error) {
+        console.error("Error creating database tables:", error);
+    }
+};
+
+// Call createTables function to initialize database schema
+createTables().catch(console.error);
+
+
 // User registration endpoint
 app.post('/auth/register', async (req, res) => {
     const { email, password } = req.body;
