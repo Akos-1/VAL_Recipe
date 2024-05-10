@@ -10,7 +10,7 @@ const Recipe = require('./models/Recipe');
 const app = express();
 const PORT = process.env.PORT || 5006;
 
-app.use(express.static(path.join(__dirname, 'Templates')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
@@ -148,7 +148,7 @@ app.post('/auth/login', async (req, res) => {
 app.get('/dashboard/:email', (req, res) => {
     const email = req.params.email;
     // Serve the dashboard.html file
-    res.sendFile(path.join(__dirname, 'Templates', 'dashboard.html'));
+    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
 // Multer configuration for file uploads
