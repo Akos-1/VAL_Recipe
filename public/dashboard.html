@@ -88,33 +88,46 @@
         <a href="#" class="button">Update Profile</a>
     </div>
 
-    <!-- Add Recipe Form -->
-    <div class="add-recipe-form">
-        <h3>Add New Recipe</h3>
-        <form id="add-recipe-form">
-            <label for="recipe-title">Title:</label>
-            <input type="text" id="recipe-title" name="title" placeholder="Enter recipe title" required>
-
-            <label for="recipe-ingredients">Ingredients:</label>
-            <textarea id="recipe-ingredients" name="ingredients" rows="4" placeholder="Enter recipe ingredients" required></textarea>
-
-            <label for="recipe-instructions">Instructions:</label>
-            <textarea id="recipe-instructions" name="instructions" rows="6" placeholder="Enter recipe instructions" required></textarea>
-
-            <button type="button" onclick="addRecipe()" class="button">Add Recipe</button>
-        </form>
-    </div>
-
-    <!-- Sample Recipe -->
-    <div class="recipe">
-        <h3>Delicious Pasta Recipe</h3>
-        <p>Description of the recipe goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id nisl a urna vestibulum malesuada.</p>
-        <div class="recipe-actions">
-            <a href="#" class="button">View Recipe</a>
-            <a href="#" class="button">Edit Recipe</a>
-            <a href="#" class="button">Delete Recipe</a>
+    <main>
+        <div class="banner">
+            <h1 id="churchName">TGSC Members</h1>
         </div>
+
+    <!-- Add Recipe Button -->
+    <button id="addRecipeButton" onclick="togglePopup()">Add Recipe</button>
+
+    <!-- Recipe List -->
+    <div id="recipeList">
+        <!-- Recipe items will be dynamically inserted here -->
     </div>
+
+    <!-- Recipe Form Popup -->
+    <div class="popup-overlay" id="recipePopupOverlay"></div>
+    <div class="popup-form" id="recipeForm">
+        <h2>Add New Recipe</h2>
+        <form id="newRecipeForm">
+            <!-- File input for image -->
+            <div class="image-upload-container">
+                <input type="file" id="recipeImage" name="image" accept="image/*" required>
+            </div>
+            <!-- Other form fields -->
+            <div class="form-group">
+                <label for="recipeTitle">Title:</label>
+                <input type="text" id="recipeTitle" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="recipeIngredients">Ingredients:</label>
+                <textarea id="recipeIngredients" name="ingredients" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="recipeInstructions">Instructions:</label>
+                <textarea id="recipeInstructions" name="instructions" rows="6" required></textarea>
+            </div>
+            <button type="submit">Add Recipe</button>
+        </form>
+        <button onclick="togglePopup()">Cancel</button>
+    </div>
+</main>
 
     <div class="sign-out">
         <a href="#" class="button">Sign Out</a>
@@ -122,6 +135,18 @@
 </div>
 
 <script>
+    function togglePopup() {
+            const popupOverlay = document.getElementById('recipePopupOverlay');
+            const recipeForm = document.getElementById('recipeForm');
+            if (popupOverlay.style.display === 'block') {
+                popupOverlay.style.display = 'none';
+                recipeForm.style.display = 'none';
+            } else {
+                popupOverlay.style.display = 'block';
+                recipeForm.style.display = 'block';
+            }
+        }
+    
     function addRecipe() {
         const title = document.getElementById('recipe-title').value;
         const ingredients = document.getElementById('recipe-ingredients').value;
