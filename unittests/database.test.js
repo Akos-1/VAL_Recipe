@@ -1,62 +1,14 @@
-const mysql = require('mysql2/promise');
-const assert = require('assert');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app'); // Adjust the path as needed
+const expect = chai.expect;
 
-// Database configuration
-const dbConfig = {
-    host: '127.0.0.1',
-    user: 'val',
-    password: '1',
-    database: 'val'
-};
+chai.use(chaiHttp);
 
-// Function to connect to the database
-const connectToDatabase = async () => {
-    try {
-        const connection = await mysql.createConnection(dbConfig);
-        return connection;
-    } catch (error) {
-        console.error("Error connecting to the database:", error);
-        throw error;
-    }
-};
-
-// Test to check if the database connection is successful
-const testDatabaseConnection = async () => {
-    try {
-        const connection = await connectToDatabase();
-        assert.ok(connection, "Database connection is successful");
-        await connection.end();
-        console.log("Database connection test passed");
-    } catch (error) {
-        console.error("Database connection test failed:", error);
-    }
-};
-
-// Test to check if the tables are created successfully
-const testTableCreation = async () => {
-    try {
-        const connection = await connectToDatabase();
-        // Check if the users table exists
-        const [users] = await connection.execute("SHOW TABLES LIKE 'users'");
-        assert.strictEqual(users.length, 1, "Users table should exist");
-        // Check if the recipes table exists
-        const [recipes] = await connection.execute("SHOW TABLES LIKE 'recipes'");
-        assert.strictEqual(recipes.length, 1, "Recipes table should exist");
-        await connection.end();
-        console.log("Table creation test passed");
-    } catch (error) {
-        console.error("Table creation test failed:", error);
-    }
-};
-
-// Run tests
-const runTests = async () => {
-    try {
-        await testDatabaseConnection();
-        await testTableCreation();
-    } catch (error) {
-        console.error("Error running tests:", error);
-    }
-};
-
-runTests();
+describe('GET /testdb', () => {
+  it('should return status 200 and a success message', async () => {
+    const res = await chai.request(app).get('/testdb');
+    expect(res).to.have.status(200);
+    expect(res.body).to.have.property('message').equal('Database connection successful');
+  });
+});
