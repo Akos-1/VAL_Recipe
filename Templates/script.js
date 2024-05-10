@@ -55,7 +55,7 @@ async function registerUser(event) {
         if (response.ok) {
             // Registration successful
             alert('Registration successful');
-            // Optionally, redirect the user to a success page or login page
+            window.location.href = "login.html";
         } else {
             // Registration failed
             throw new Error('Registration failed');
