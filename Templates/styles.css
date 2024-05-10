@@ -89,7 +89,7 @@ header {
 }
 
 .blue-banner {
-    background: url('images/banner.jpg') center/cover;
+    background: url('../images/banner.jpg') center/cover;
     padding: 80px 20px;
 }
 
