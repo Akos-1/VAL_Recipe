@@ -1,26 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <style>
-        /* Your CSS styles */
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <style>
+            <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
     </style>
-</head>
-<body>
-
-    <div class="register-form" id="register-form">
-        <!-- Name, email, password, and retype password fields -->
-        <input type="text" id="register-name" name="name" placeholder="Name">
-        <input type="email" id="register-email" name="email" placeholder="Email">
-        <input type="password" id="register-password" name="password" placeholder="Password">
-        <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm Password">
-        <!-- Register button -->
-        <input type="submit" value="Register" onclick="registerUser(event)">
-    </div>
-
-    <!-- Link your JavaScript file -->
-    <script src="script.js"></script>
-</body>
-</html>
+        </style>
+    </head>
+    <body>
+    
+        <div class="register-form" id="register-form">
+            <!-- Name, email, password, and retype password fields -->
+            <input type="text" id="register-name" name="name" placeholder="Name">
+            <input type="email" id="register-email" name="email" placeholder="Email">
+            <input type="password" id="register-password" name="password" placeholder="Password">
+            <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm Password">
+            <!-- Register button -->
+            <input type="submit" value="Register" onclick="registerUser(event)">
+        </div>
+    
+        <!-- Link your JavaScript file -->
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
