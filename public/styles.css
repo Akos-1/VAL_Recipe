@@ -99,6 +99,15 @@ header {
     padding: 10px;
 }
 
+.about-us {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #3498db; /* Blue background color */
+    border-radius: 10px;
+}
+
 .food-images {
     display: flex;
     flex-wrap: wrap; /* Allow food items to wrap on smaller screens */
