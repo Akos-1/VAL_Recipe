@@ -184,8 +184,11 @@ app.get('/recipes/search', async (req, res) => {
 // Add a new recipe
 app.post('/recipes/add', async (req, res) => {
     const { title, ingredients, instructions, userEmail } = req.body;
-
-    try {
+        try {
+            // Check if userEmail is provided
+            if (!userEmail) {
+                return res.status(400).json({ message: 'User email is required' });
+            }
         // Insert the new recipe into the database and associate it with the user
         const connection = await pool.getConnection();
         await connection.execute('INSERT INTO recipes (title, ingredients, instructions, owner) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userEmail]);
