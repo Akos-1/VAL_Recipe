@@ -188,7 +188,7 @@ app.post('/recipes/add', async (req, res) => {
     try {
         // Insert the new recipe into the database and associate it with the user
         const connection = await pool.getConnection();
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, ) VALUES (?, ?, ?, ?)', [title, ingredients, instructions]);
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, ) VALUES (?, ?, ?)', [title, ingredients, instructions]);
         connection.release(); // Release the connection
         res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
