@@ -10,16 +10,7 @@ function togglePopup(popupId) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listener to the "Register here" link
-    document.getElementById('register-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        toggleRegisterForm(); 
-    });
 
-    //event listener to the register form for submission
-    document.getElementById('register-form').addEventListener('submit', registerUser);
-});
 
 // Function to toggle the registration form
 function toggleRegisterForm() {
