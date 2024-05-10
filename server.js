@@ -183,12 +183,12 @@ app.get('/recipes/search', async (req, res) => {
 
 // Add a new recipe
 app.post('/recipes/add', async (req, res) => {
-    const { title, ingredients, instructions } = req.body;
+    const { title, ingredients, instructions, userEmail } = req.body;
 
     try {
         // Insert the new recipe into the database without associating it with a specific user
         const connection = await pool.getConnection();
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions) VALUES (?, ?, ?)', [title, ingredients, instructions]);
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, owner) VALUES (?, ?, ?)', [title, ingredients, instructions, userEmail]);
         connection.release(); // Release the connection
         res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
@@ -196,6 +196,27 @@ app.post('/recipes/add', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+// Fetch recipes owned by the current user
+app.get('/api/recipes', async (req, res) => {
+    const userEmail = req.query.userEmail; // Extract userEmail from the request query parameters
+    
+    try {
+        // Get a connection from the pool
+        connection = await pool.getConnection();
+        const [recipes] = await connection.execute('SELECT * FROM recipes WHERE owner = ?', [userEmail]); // Filter recipes based on owner field
+        res.json({ recipes });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    } finally {
+        // Release the connection back to the pool
+        if (connection) {
+            connection.release();
+        }
+    }
+});
+
 
 // Endpoint to handle updating a recipe
 app.put('/api/recipes/:id', async (req, res) => {
