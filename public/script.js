@@ -118,11 +118,19 @@ async function searchRecipes(event) {
     }
     const searchQuery = searchInput.value;
     try {
-        // Your fetch request here
+        // Send a request to the server to fetch matching recipes based on the search query
+        const response = await fetch(`/recipes/search?q=${searchQuery}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch recipes');
+        }
+        const recipes = await response.json();
+        // Display the fetched recipes on the page
+        displayRecipes(recipes);
     } catch (error) {
         console.error(error);
     }
 }
+
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
