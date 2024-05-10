@@ -105,32 +105,54 @@
         </form>
     </div>
 
+    <!-- Sample Recipe -->
+    <div class="recipe">
+        <h3>Delicious Pasta Recipe</h3>
+        <p>Description of the recipe goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id nisl a urna vestibulum malesuada.</p>
+        <div class="recipe-actions">
+            <a href="#" class="button">View Recipe</a>
+            <a href="#" class="button">Edit Recipe</a>
+            <a href="#" class="button">Delete Recipe</a>
+        </div>
+    </div>
+
+    <div class="sign-out">
+        <a href="#" class="button">Sign Out</a>
+    </div>
 </div>
 
 <script>
-    // Function to handle adding a recipe
-async function addRecipe(event) {
-    event.preventDefault();
-    const title = document.getElementById('recipe-title').value;
-    const instructions = document.getElementById('recipe-instructions').value;
-    const ingredients = document.getElementById('recipe-ingredients').value;
-    try {
-        const response = await fetch('/recipes/add', {
+    function addRecipe() {
+        const title = document.getElementById('recipe-title').value;
+        const ingredients = document.getElementById('recipe-ingredients').value;
+        const instructions = document.getElementById('recipe-instructions').value;
+
+        // Here you can perform any validation before sending the data to the server
+
+        // Send the data to the server using fetch or XMLHttpRequest
+        fetch('/recipes/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, instructions, ingredients })
+            body: JSON.stringify({ title, ingredients, instructions })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add recipe');
+            }
+            // Optionally, you can reset the form fields after successful submission
+            document.getElementById('recipe-title').value = '';
+            document.getElementById('recipe-ingredients').value = '';
+            document.getElementById('recipe-instructions').value = '';
+            alert('Recipe added successfully!');
+            populateDashboard(); 
+        })
+        .catch(error => {
+            console.error(error);
+            alert('Failed to add recipe. Please try again.');
         });
-        if (!response.ok) {
-            throw new Error('Failed to add recipe');
-        }
-        alert('Recipe added successfully!');
-        populateDashboard(); // Refresh dashboard with updated recipe list
-    } catch (error) {
-        console.error('Error adding recipe:', error);
     }
-}
 </script>
 
 </body>
