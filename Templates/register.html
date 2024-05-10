@@ -74,13 +74,14 @@ a:hover {
 </head>
 <body>
 
-        <form class="register-form" id="register-form">
-            <h2>Register</h2>
-            <input type="text" id="name" name="name" placeholder="Name" required>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Register" onclick="registerUser(event)">
-        </form>
+    <div class="register-form" id="register-form">
+        <!-- Name, email, password, and retype password fields -->
+        <input type="text" id="register-name" name="name" placeholder="Name">
+        <input type="email" id="register-email" name="email" placeholder="Email">
+        <input type="password" id="register-password" name="password" placeholder="Password">
+        <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm Password">
+        <!-- Register button -->
+        <input type="submit" value="Register" onclick="registerUser(event)">
     </div>
 </body>
 </html>
