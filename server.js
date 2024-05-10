@@ -98,13 +98,14 @@ app.post('/auth/register', async (req, res) => {
         // Generate dynamic dashboard URL using email
         const dashboardUrl = `/dashboard/${encodeURIComponent(email)}`;
 
-        // Respond with success message and dashboard URL
-        res.status(201).json({ message: 'Registration successful!', dashboardUrl });
+        // Redirect to the user's dashboard after successful registration
+        res.redirect(dashboardUrl);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 // User login endpoint
 app.post('/auth/login', async (req, res) => {

@@ -10,8 +10,6 @@ function togglePopup(popupId) {
     }
 }
 
-
-
 // Function to toggle the registration form
 function toggleRegisterForm() {
     const registerForm = document.getElementById('register-form');
@@ -22,48 +20,63 @@ function toggleRegisterForm() {
     }
 }
 
-function registerUser(event) {
-  event.preventDefault(); // Prevent the default form submission
+// Function to handle user registration
+async function registerUser(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-  const name = document.getElementById('register-name').value;
-  const email = document.getElementById('register-email').value;
-  const password = document.getElementById('register-password').value;
-  const confirmPassword = document.getElementById('register-confirm-password').value;
+    const name = document.getElementById('register-name').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm-password').value;
 
-  // Validate password and confirm password
-  if (password !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
-
-  // Create an object with the user data
-  const userData = {
-    name: name,
-    email: email,
-    password: password
-  };
-
-  // Send a POST request to the server
-  fetch('/auth/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userData)
-  })
-  .then(response => {
-    if (response.ok) {
-      alert('Registration successful');
-      // Optionally, redirect the user to a success page or login page
-    } else {
-      throw new Error('Registration failed');
+    // Validate password and confirm password
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
     }
-  })
-  .catch(error => {
-    console.error(error);
-    alert('Registration failed');
-  });
+
+    // Create an object with the user data
+    const userData = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    try {
+        // Send a POST request to register the user
+        const response = await fetch('/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+            // Registration successful
+            alert('Registration successful');
+            // Optionally, redirect the user to a success page or login page
+        } else {
+            // Registration failed
+            throw new Error('Registration failed');
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Registration failed');
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the "Register here" link
+    document.getElementById('register-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleRegisterForm(); 
+    });
+
+    //event listener to the register form for submission
+    document.getElementById('register-form').addEventListener('submit', registerUser);
+});
+
 
 
 async function loginUser(event) {
