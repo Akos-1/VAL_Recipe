@@ -143,6 +143,36 @@
         });
     }
 
+    // Function to fetch user-specific data and populate the dashboard
+    async function populateDashboard() {
+        try {
+            // Fetch and populate user's recipes
+            const recipesResponse = await fetch('/api/recipes');
+            const recipesData = await recipesResponse.json();
+            // Populate recipes section
+            const recipeList = document.createElement('div');
+            recipeList.innerHTML = '';
+            recipesData.forEach(recipe => {
+                const listItem = document.createElement('div');
+                listItem.classList.add('recipe');
+                listItem.innerHTML = `
+                    <h3>${recipe.title}</h3>
+                    <p>${recipe.instructions}</p>
+                    <!-- Add more recipe details as needed -->
+                    <div class="recipe-actions">
+                        <button onclick="editRecipe(${recipe.id})">Edit</button>
+                        <button onclick="deleteRecipe(${recipe.id})">Delete</button>
+                    </div>
+                `;
+                recipeList.appendChild(listItem);
+            });
+            document.querySelector('.dashboard').appendChild(recipeList);
+        } catch (error) {
+            console.error('Error fetching and populating dashboard:', error);
+        }
+    }
+
+    // Call populateDashboard when the page loads
     document.addEventListener('DOMContentLoaded', populateDashboard);
 </script>
 
