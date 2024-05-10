@@ -186,9 +186,9 @@ app.post('/recipes/add', async (req, res) => {
     const { title, ingredients, instructions, userEmail } = req.body;
 
     try {
-        // Insert the new recipe into the database without associating it with a specific user
+        // Insert the new recipe into the database and associate it with the user
         const connection = await pool.getConnection();
-        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, owner) VALUES (?, ?, ?)', [title, ingredients, instructions, userEmail]);
+        await connection.execute('INSERT INTO recipes (title, ingredients, instructions, owner) VALUES (?, ?, ?, ?)', [title, ingredients, instructions, userEmail]);
         connection.release(); // Release the connection
         res.status(201).json({ message: 'Recipe added successfully' });
     } catch (error) {
@@ -196,6 +196,7 @@ app.post('/recipes/add', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 // Fetch recipes owned by the current user
 app.get('/api/recipes', async (req, res) => {
