@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register</title>
         <style>
-            <style>
-        body {
+           body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     margin: 0;
@@ -17,7 +16,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;;
     height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-height: 100px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex; /* Updated to display as flex container */
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding for the list */
+}
+
+.menu a {
+    margin-right: 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #ddd;
+}
+
+.recipes-dropdown {
+    position: relative;
+    display: inline-block;
 }
 
 form {
@@ -45,17 +88,6 @@ button {
     border-radius: 4px;
 }
 
-button {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
 p {
     margin-top: 20px;
     text-align: center;
@@ -70,11 +102,16 @@ a:hover {
     text-decoration: underline;
 }
 
+
+
     </style>
-        </style>
-    </head>
-    <body>
-    
+
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="../images/logo.jpg" alt="Logo">
+        </div>
         <div class="register-form" id="register-form">
             <!-- Name, email, password, and retype password fields -->
             <input type="text" id="register-name" name="name" placeholder="Name">
