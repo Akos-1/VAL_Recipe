@@ -107,8 +107,6 @@ async function loginUser(event) {
 }
 
 
-
-
 // Function to fetch recipes based on search query
 async function searchRecipes(event) {
     event.preventDefault();
@@ -125,25 +123,6 @@ async function searchRecipes(event) {
         console.error(error);
     }
 }
-
-// Function to display recipes on the page
-function displayRecipes(recipes) {
-    // Get the container element where recipes will be displayed
-    const recipeContainer = document.getElementById('recipe-list');
-    if (!recipeContainer) {
-        console.error('Recipe container element not found');
-        return;
-    }
-    // Clear previous content
-    recipeContainer.innerHTML = '';
-    // Loop through recipes and display them
-    recipes.forEach(recipe => {
-        const recipeDiv = document.createElement('div');
-        recipeDiv.textContent = recipe.title; // Example: Display recipe title
-        recipeContainer.appendChild(recipeDiv);
-    });
-}
-
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
