@@ -73,10 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleRegisterForm(); 
     });
 
-    //event listener to the register form for submission
-    document.getElementById('register-form').addEventListener('submit', registerUser);
+    // Add event listener to the search form for submission
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) { // Check if search form exists
+        searchForm.addEventListener('submit', function(event) {
+            searchRecipes(event); // Pass event to searchRecipes function
+        });
+    }
 });
-
 
 
 async function loginUser(event) {
