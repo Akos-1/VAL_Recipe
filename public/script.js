@@ -111,30 +111,31 @@ async function loginUser(event) {
 }
 
 
-// Function to fetch recipes based on search query
-async function searchRecipes(event) {
-    event.preventDefault();
-    // Get the search input value
+// Function to handle searching for recipes
+async function searchRecipes() {
     const searchInput = document.getElementById('search');
-    if (!searchInput) {
-        console.error('Search input element not found');
-        return;
-    }
-    const searchQuery = searchInput.value;
+    const searchQuery = searchInput.value.trim().toLowerCase();
+
     try {
-        // Send a request to the server to fetch matching recipes based on the search query
-        const response = await fetch(`/recipes/search?q=${searchQuery}`);
+        // Fetch all recipes
+        const response = await fetch(`/recipes/all`);
         if (!response.ok) {
             throw new Error('Failed to fetch recipes');
         }
         const recipes = await response.json();
-        // Display the fetched recipes on the page
-        displayRecipes(recipes);
+
+        // Filter recipes based on search query
+        const filteredRecipes = recipes.filter(recipe => {
+            // Check if recipe title or ingredients contain the search query
+            return recipe.title.toLowerCase().includes(searchQuery) || recipe.ingredients.toLowerCase().includes(searchQuery);
+        });
+
+        // Display filtered recipes
+        displayRecipes(filteredRecipes);
     } catch (error) {
         console.error(error);
     }
 }
-
 
 // Function to display recipes on the page
 function displayRecipes(recipes) {
@@ -152,6 +153,7 @@ function displayRecipes(recipes) {
         recipeList.appendChild(listItem);
     });
 }
+
 
 // Function to handle adding a new recipe
 async function addRecipe(event) {
