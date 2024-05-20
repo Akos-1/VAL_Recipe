@@ -58,14 +58,13 @@ async function registerUser(event) {
             window.location.href = "login.html";
         } 
         
-        elif{
-            (existingUsers.length > 0) {
-                alert('Email already exists');
+        else if (response.status === 409) {
+                alert('User with email already exists');
         }
         
         else {
             // Registration failed
-            throw new Error('Registration failed');
+            throw new Error(`Registration failed: ${response.statusText}`);
         }
     } catch (error) {
         console.error(error);
@@ -102,9 +101,17 @@ async function loginUser(event) {
             },
             body: JSON.stringify({ email, password })
         });
+
         if (!response.ok) {
-            throw new Error('Login failed');
+            if (response.status === 401) {
+                throw new Error('Invalid email or password');
+            } else if (response.status === 403) {
+                throw new Error('Access forbidden');
+            } else {
+                throw new Error('Login failed');
+            }
         }
+
         const responseData = await response.json();
         if (responseData.dashboardUrl) {
             // Redirect to user's dashboard
@@ -114,6 +121,7 @@ async function loginUser(event) {
         }
     } catch (error) {
         console.error(error);
+        alert(error.message);
     }
 }
 
