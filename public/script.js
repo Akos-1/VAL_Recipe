@@ -56,7 +56,14 @@ async function registerUser(event) {
             // Registration successful
             alert('Registration successful');
             window.location.href = "login.html";
-        } else {
+        } 
+        
+        elif{
+            (existingUsers.length > 0) {
+                alert('Email already exists');
+        }
+        
+        else {
             // Registration failed
             throw new Error('Registration failed');
         }
