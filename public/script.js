@@ -58,7 +58,7 @@ async function registerUser(event) {
             window.location.href = "login.html";
         } 
         
-        else if (response.status === 409) {
+        else if (response.status === 400) {
                 alert('User with email already exists');
         }
         
