@@ -4,7 +4,7 @@ const assert = require('assert');
 
 describe('POST /auth/login', () => {
   it('should log in an existing user', (done) => {
-    const userData = { email: 'test@example.com', password: 'testpassword' };
+    const userData = { email: 'testemail@example.com', password: 'testpassword' };
     request(app)
       .post('/auth/login')
       .send(userData)
